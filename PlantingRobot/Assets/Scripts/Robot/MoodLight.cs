@@ -15,7 +15,6 @@ public class MoodLight : MonoBehaviour
     {
         _lampMaterial = _lamp.GetComponent<Renderer>().material;
         _defaultColor = _lampMaterial.GetVector("Vector4_9C65C2CC");
-        SetColorBlink(new Vector3(0.0f, 1.0f, 0.0f), 10);
     }
 
     //Set LampColor, values between 0.0 and 1.0
