@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Planter : MonoBehaviour
+public class Planter : Interactable
 {
     public Material dry;
     public Material wet;
 
-    public PlayerRobot player;
     public GameObject potato; //TODO: remove
     private GameObject plant = null;
 
@@ -15,12 +14,6 @@ public class Planter : MonoBehaviour
     public float maxWater = 40;
     public float waterConsumption = 10;
     public float water = 0;
-
-    public void OnMouseDown() {
-        if (player.CanInteract(transform)) {
-            player.InteractWithMe(this);
-        }
-    }
 
     public Carryable Harvest() {
         if (plant != null) {

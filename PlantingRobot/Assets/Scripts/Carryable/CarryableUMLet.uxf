@@ -22,7 +22,7 @@
       <x>70</x>
       <y>10</y>
       <w>420</w>
-      <h>140</h>
+      <h>120</h>
     </coordinates>
     <panel_attributes>&lt;&lt;abstract&gt;&gt;
 Carryable
@@ -30,8 +30,7 @@ Carryable
 player : PlayerRobot
 --
 OnMouseDown()
-abstract InteractWith(Container) : CarryableInteractionResult
-abstract InteractWith(Planter) : CarryableInteractionResult
+abstract InteractWith(Interactable) : CarryableInteractionResult
 </panel_attributes>
     <additional_attributes/>
   </element>
@@ -73,34 +72,34 @@ value : float
     <id>Relation</id>
     <coordinates>
       <x>330</x>
-      <y>140</y>
+      <y>120</y>
       <w>30</w>
-      <h>80</h>
+      <h>100</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>100</x>
-      <y>140</y>
+      <y>120</y>
       <w>260</w>
-      <h>80</h>
+      <h>100</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>240.0;10.0;10.0;60.0</additional_attributes>
+    <additional_attributes>240.0;10.0;10.0;80.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>330</x>
-      <y>140</y>
+      <y>120</y>
       <w>260</w>
-      <h>80</h>
+      <h>100</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;240.0;60.0</additional_attributes>
+    <additional_attributes>10.0;10.0;240.0;80.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
