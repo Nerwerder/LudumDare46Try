@@ -11,6 +11,9 @@
 /[Ll]ogs/
 /[Uu]ser[Ss]ettings/
 
+/Library/*
+/Logs/*
+
 # MemoryCaptures can get excessive in size.
 # They also could contain extremely sensitive data
 /[Mm]emoryCaptures/
@@ -71,3 +74,5 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 PlantingRobot/Temp/
 PlantingRobot/Library/Artifacts/26/2658bb9b851dc829215c851cc1208d1f
+PlantingRobot/Library/
+PlantingRobot/Logs/Packages-Update.log
