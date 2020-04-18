@@ -9,7 +9,6 @@ public class Planter : MonoBehaviour
 
     public PlayerRobot player;
     public GameObject potato; //TODO: remove
-    private bool planted = false;
     private GameObject plant = null;
 
     //Water
@@ -17,12 +16,32 @@ public class Planter : MonoBehaviour
     public float waterConsumption = 10;
     public float water = 0;
 
-    void OnMouseDown()
-    {
-        if (player.CanInteract(transform))
-        {
-            switch (player.GetState())
-            {
+    void OnMouseDown() {
+        if (player.CanInteract(transform)) {
+            switch (player.GetState()) {
+                case PlayerRobot.PlayerState.normal:
+                    if (plant != null) {
+                        switch (plant.GetComponent<Plant>().Harvest()) {
+                            case Plant.PlantState.NotReady:
+                                //Nothing
+                                break;
+                            case Plant.PlantState.Harvestable:
+                                player.Earn(plant.GetComponent<Plant>().value);
+                                Destroy(plant);
+                                plant = null;
+                                break;
+                            case Plant.PlantState.Dead:
+                                //Sad biep
+                                Destroy(plant);
+                                plant = null;
+                                break;
+                            default:
+                                Debug.Assert(false);
+                                break;
+                        }
+                    }
+                    break;
+
                 case PlayerRobot.PlayerState.water:
                     water = 40;    //TODO: Remove water from wateringcan
                                    //Change Material
@@ -30,30 +49,32 @@ public class Planter : MonoBehaviour
                     break;
 
                 case PlayerRobot.PlayerState.seed:
-                    if (!planted)
-                    {
+                    if (plant == null) {
                         plant = Instantiate(potato, transform);
-                        planted = true;
                     }
                     break;
             }
         }
     }
 
-    void FixedUpdate()
-    {
-        if (water > 0 && planted)
-        {
-            float consumedWater = waterConsumption * Time.deltaTime;
-            float growth = Mathf.Min(consumedWater / waterConsumption, water);
+    void FixedUpdate() {
+        if (plant != null) {
+            float requiredWater = waterConsumption * Time.deltaTime;
 
-            plant.GetComponent<Plant>().grow(growth);
-            water -= growth;
+            if (water > 0) {
+                float consumedWater = Mathf.Min(requiredWater, water);
 
-            if (water <= 0)
-            {
-                water = 0;
-                gameObject.GetComponent<MeshRenderer>().material = dry;
+                float growth = consumedWater / waterConsumption;
+                plant.GetComponent<Plant>().Grow(growth);
+
+                water -= consumedWater;
+                if (water <= 0) {
+                    water = 0;
+                    gameObject.GetComponent<MeshRenderer>().material = dry;
+                }
+            } else {
+                float decay = requiredWater / waterConsumption;
+                plant.GetComponent<Plant>().Decay(decay);
             }
         }
     }

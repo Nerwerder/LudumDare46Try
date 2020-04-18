@@ -675,7 +675,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 03634957bf19a694dbfe224ea9a69da4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -746,7 +746,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 105fee285ec2b8140aa4191bd0c60afb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 4
+  speed: 5
 --- !u!114 &1421364282
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -759,7 +759,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f025402098166b478a611b5bbe37841, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerMaterial: {fileID: 2100000, guid: 03634957bf19a694dbfe224ea9a69da4, type: 2}
   interactiveDistance: 3
+  money: 20
 --- !u!1 &1687258581
 GameObject:
   m_ObjectHideFlags: 0

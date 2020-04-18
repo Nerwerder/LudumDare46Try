@@ -8,11 +8,9 @@ public class Container : MonoBehaviour
     public PlayerRobot player;
     public PlayerRobot.PlayerState state;
 
-    void OnMouseDown()
-    {
-        if (player.CanInteract(gameObject.transform))
-        {
-            player.ChangePlayerState(state, material);
+    void OnMouseDown() {
+        if (player.CanInteract(gameObject.transform)) {
+            player.ChangePlayerState(state, material);  //TODO: Change Money
         }
     }
 }
