@@ -6,6 +6,7 @@ public class Plant : MonoBehaviour
 {
     public Material deadPlantMaterial = null;
     public List<PlantPhase> plantPhases = null;
+    public Fruit fruit;
     private int currentPlantPhase = 0;
 
     public int price = 7;
@@ -56,13 +57,22 @@ public class Plant : MonoBehaviour
         }
     }
 
-    public PlantState Harvest() {
-        if (currentPlantState == PlantState.NotReady) {
-            return currentPlantState;
+    public Carryable Harvest() {
+        switch(currentPlantState) {
+            case PlantState.NotReady:
+                return null;
+            case PlantState.Harvestable:
+                var ret = Instantiate<Fruit>(fruit);
+                ret.value = value;
+                Destroy(currentPlant);
+                currentPlant = null;
+                return ret;
+            case PlantState.Dead:
+                Destroy(currentPlant);
+                currentPlant = null;
+                return null;
+            default:
+                return null;
         }
-
-        Destroy(currentPlant);
-        currentPlant = null;
-        return currentPlantState;
     }
 }
