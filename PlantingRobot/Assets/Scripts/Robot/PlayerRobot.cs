@@ -61,7 +61,7 @@ public class PlayerRobot : MonoBehaviour
     }
 
     public bool Pay(int m) {
-        if (money > m) {
+        if (money >= m) {
             money -= m;
             return true;
         }

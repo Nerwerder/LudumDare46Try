@@ -45,10 +45,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deadPlantMaterial: {fileID: 2100000, guid: 9f22d6f259a35964e9c0904ccc210863, type: 2}
   plantPhases:
-  - {fileID: 923233851, guid: 14e441a137e6cfd42bd998e88ee63af6, type: 3}
-  - {fileID: 1307117357, guid: 50c8025ec94c3444fa18614be11ce251, type: 3}
-  - {fileID: -1181340830754167506, guid: 91011ed6981fe41418b0ae9a15b43315, type: 3}
-  - {fileID: -3612563050160765, guid: 8adca27288d3a4740a3fe1a2c8d0010b, type: 3}
+  - {fileID: 8217890790949487074, guid: 809de262229cafc469999e1e0bddc794, type: 3}
+  - {fileID: 7834737750870989859, guid: fe8f9e57e5963fe4f882bb9b4c824dda, type: 3}
+  - {fileID: -2034645783067297740, guid: fc1a8a86865b9f84e83508e7300b415b, type: 3}
   fruit: {fileID: 676983473390920715, guid: 7dd95104e1c23f948925ec98e5d43c51, type: 3}
   price: 7
   value: 21

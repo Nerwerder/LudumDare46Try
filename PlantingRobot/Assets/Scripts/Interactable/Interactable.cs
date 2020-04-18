@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class Interactable : MonoBehaviour
 {
-    public PlayerRobot player = null;
+    [HideInInspector] public PlayerRobot player = null;
     public int interactionCost = 0;
 
     public void Start() {
