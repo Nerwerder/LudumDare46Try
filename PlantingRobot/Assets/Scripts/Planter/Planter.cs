@@ -22,29 +22,24 @@ public class Planter : MonoBehaviour
         }
     }
 
-    public void Harvest() {
+    public Carryable Harvest() {
         if (plant != null) {
-            switch (plant.GetComponent<Plant>().currentPlantState) {
+            var p = plant.GetComponent<Plant>();
+            switch (p.currentPlantState) {
                 case global::Plant.PlantState.NotReady:
-                    //Nothing
-                    break;
+                    return null;
                 case global::Plant.PlantState.Harvestable:
-                    player.Earn(plant.GetComponent<Plant>().value);
-                    Destroy(plant);
-                    plant = null;
-                    break;
                 case global::Plant.PlantState.Dead:
-                    //Sad biep
+                    var ret = p.Harvest();
                     Destroy(plant);
                     plant = null;
-                    break;
+                    return ret;
                 default:
-                    Debug.Assert(false);
-                    break;
+                    return null;
             }
         }
+        return null;
     }
-
 
     public void Water(float w) {
         water = Mathf.Min(water + w, maxWater);

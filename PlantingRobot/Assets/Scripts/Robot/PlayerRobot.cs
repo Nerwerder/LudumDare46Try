@@ -9,39 +9,33 @@ public class PlayerRobot : MonoBehaviour
     public float interactiveDistance = 3.0f;
     public int money = 20;
 
-    private Tool currentTool = null;
-    private Seed currentSeed = null;
+    private Carryable curCarrying;
 
     public void Update() {
-
-        if(currentTool) {
-            currentTool.transform.position = transform.position + transform.forward * currentTool.distance + Vector3.up * currentTool.heightOffset;
-            currentTool.transform.forward = -transform.forward;
-        }
-
-        if(currentSeed) {
-            currentSeed.transform.position = transform.position + Vector3.up * 5;
+        //Move the Payload
+        if(curCarrying is Tool) {
+            Tool t = (Tool)curCarrying;
+            t.transform.position = transform.position + transform.forward * t.distance + Vector3.up * t.heightOffset;
+            t.transform.forward = -transform.forward;
+        } else if (curCarrying is Seed || curCarrying is Fruit) {
+            curCarrying.transform.position = transform.position + Vector3.up * 5;
         }
 
         if(Input.GetMouseButton(1)) {
-            if(currentTool) {
-                DropTool();
-            }
-            if(currentSeed) {
-                DropSeeed();
+            if(curCarrying) {
+                DropCarrying();
             }
         }
     }
 
     public void InteractWithMe(Container c) {
-        if(currentTool) {
-            currentTool.InteractWith(c);
-        } 
-
-        if(!currentSeed && !currentTool) {
-            switch(c.type) {
+        if (curCarrying) {
+            var res = curCarrying.InteractWith(c);
+            Carry(res.carryable);    //TODO: Do something with success or failure
+        } else {
+            switch (c.type) {
                 case Container.ContainerType.SeedContainer:
-                    currentSeed = ((SeedContainer)c).BuySeed();
+                    Carry(((SeedContainer)c).BuySeed());
                     break;
                 default:
                     //Nothing
@@ -51,12 +45,11 @@ public class PlayerRobot : MonoBehaviour
     }
 
     public void InteractWithMe(Planter p) {
-        if (currentTool) {
-            currentTool.InteractWith(p);
-        } else if (currentSeed) {
-            currentSeed = currentSeed.InteractWith(p);
+        if(curCarrying) {
+            var res = curCarrying.InteractWith(p);
+            Carry(res.carryable);    //TODO: Do something with success or failure
         } else {
-            p.Harvest();//TODO: Make Robot the acttive component in this interaction
+            Carry(p.Harvest());
         }
     }
 
@@ -83,46 +76,30 @@ public class PlayerRobot : MonoBehaviour
         money += m;
     }
 
-    //TODO Create Parent for Tool - Seed - Fruit
-    public bool PickMeUp(Tool t) {
-        if(currentTool || currentSeed) {
+    private void Carry (Carryable c) {
+        curCarrying = c;
+        if(curCarrying) {
+            curCarrying.GetComponent<Rigidbody>().isKinematic = true;
+        }
+    }
+
+    public bool PickMeUp(Carryable c) {
+        if(c == null || curCarrying != null) {
             return false;
         }
 
-        currentTool = t;
-        currentTool.GetComponent<Rigidbody>().isKinematic = true;
-        
+        curCarrying = c;
+        curCarrying.GetComponent<Rigidbody>().isKinematic = true;
         return true;
     }
 
-    public bool PickMeUp(Seed s) {
-        if (currentSeed || currentTool) {
+    public bool DropCarrying() {
+        if(curCarrying == null) {
             return false;
         }
 
-        currentSeed = s;
-        currentSeed.GetComponent<Rigidbody>().isKinematic = true;
-
-        return true;
-    }
-
-    public bool DropTool() {
-        if(!currentTool) {
-            return false;
-        }
-
-        currentTool.GetComponent<Rigidbody>().isKinematic = false;
-        currentTool = null;
-        return true;
-    }
-
-    public bool DropSeeed() {
-        if(!currentSeed) {
-            return false;
-        }
-
-        currentSeed.GetComponent<Rigidbody>().isKinematic = false;
-        currentSeed = null;
+        curCarrying.GetComponent<Rigidbody>().isKinematic = false;
+        curCarrying = null;
         return true;
     }
 }

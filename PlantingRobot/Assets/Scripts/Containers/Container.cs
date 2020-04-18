@@ -7,7 +7,7 @@ public class Container : MonoBehaviour
     public PlayerRobot player;
     public ContainerType type;
 
-    public enum ContainerType { WaterHole, SeedContainer }
+    public enum ContainerType { WaterContainer, SeedContainer, DropOffContainer }
     public int interactionCost = 0;
 
     void OnMouseDown() {
