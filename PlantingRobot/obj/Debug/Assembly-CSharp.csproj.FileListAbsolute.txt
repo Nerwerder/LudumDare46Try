@@ -1,0 +1,2 @@
+E:\Projekte\Unity\LudumDare46Try\PlantingRobot\obj\Debug\Assembly-CSharp.csprojAssemblyReference.cache
+E:\Projekte\Unity\LudumDare46Try\PlantingRobot\obj\Debug\Assembly-CSharp.csproj.CoreCompileInputs.cache

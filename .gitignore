@@ -76,3 +76,5 @@ PlantingRobot/Temp/
 PlantingRobot/Library/Artifacts/26/2658bb9b851dc829215c851cc1208d1f
 PlantingRobot/Library/
 PlantingRobot/Logs/Packages-Update.log
+*.cache
+*.meta
