@@ -3,7 +3,32 @@ guid: 149f0101aa8a25a4f9b2017061422ecb
 ModelImporter:
   serializedVersion: 19300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Eye
+    second: {fileID: 2100000, guid: c7e0b7e246126b347a21eac5015d1884, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Lamp
+    second: {fileID: 2100000, guid: a63a43613ed6bb744b1c6dc70dba7f79, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Lens
+    second: {fileID: 2100000, guid: 9e4cffa8b70738f4bbd09e829d6a2715, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MainBody
+    second: {fileID: 2100000, guid: 0b21303c79c2185469d0be0c9c4664fa, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: TrackMat
+    second: {fileID: 2100000, guid: 26c47cbbcca6e7c488c4c6219b48b08e, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0

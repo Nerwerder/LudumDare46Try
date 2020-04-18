@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Lamp
-  m_Shader: {fileID: -6465566751694194690, guid: f4132e9caf36ec94e8c2109077934033,
+  m_Shader: {fileID: -6465566751694194690, guid: 7147b6e88e97ec449a52bc2db07a0cc4,
     type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 2
