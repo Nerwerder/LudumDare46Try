@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerRobot : MonoBehaviour
 {
     public Material playerMaterial = null;
+    public GameObject colorChanger = null;
     public float interactiveDistance = 3.0f;
     public int money = 20;
 
@@ -12,8 +13,8 @@ public class PlayerRobot : MonoBehaviour
     private PlayerState state = PlayerState.normal;
 
     public void ChangePlayerState(PlayerState s, Material m) {
-        this.state = s;
-        this.gameObject.GetComponent<Renderer>().material = m;
+        state = s;
+        colorChanger.GetComponent<Renderer>().material = m;
     }
 
     public bool CanInteract(Transform other) {
