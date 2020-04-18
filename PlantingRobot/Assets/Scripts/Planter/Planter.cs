@@ -16,48 +16,54 @@ public class Planter : MonoBehaviour
     public float waterConsumption = 10;
     public float water = 0;
 
-    void OnMouseDown() {
+    public void OnMouseDown() {
         if (player.CanInteract(transform)) {
-            switch (player.GetState()) {
-                case PlayerRobot.PlayerState.normal:
-                    if (plant != null) {
-                        switch (plant.GetComponent<Plant>().Harvest()) {
-                            case Plant.PlantState.NotReady:
-                                //Nothing
-                                break;
-                            case Plant.PlantState.Harvestable:
-                                player.Earn(plant.GetComponent<Plant>().value);
-                                Destroy(plant);
-                                plant = null;
-                                break;
-                            case Plant.PlantState.Dead:
-                                //Sad biep
-                                Destroy(plant);
-                                plant = null;
-                                break;
-                            default:
-                                Debug.Assert(false);
-                                break;
-                        }
-                    }
-                    break;
+            player.InteractWithMe(this);
+        }
+    }
 
-                case PlayerRobot.PlayerState.water:
-                    water = 40;    //TODO: Remove water from wateringcan
-                                   //Change Material
-                    gameObject.GetComponent<MeshRenderer>().material = wet;
+    public void Harvest() {
+        if (plant != null) {
+            switch (plant.GetComponent<Plant>().currentPlantState) {
+                case global::Plant.PlantState.NotReady:
+                    //Nothing
                     break;
-
-                case PlayerRobot.PlayerState.seed:
-                    if (plant == null) {
-                        plant = Instantiate(potato, transform);
-                    }
+                case global::Plant.PlantState.Harvestable:
+                    player.Earn(plant.GetComponent<Plant>().value);
+                    Destroy(plant);
+                    plant = null;
+                    break;
+                case global::Plant.PlantState.Dead:
+                    //Sad biep
+                    Destroy(plant);
+                    plant = null;
+                    break;
+                default:
+                    Debug.Assert(false);
                     break;
             }
         }
     }
 
-    void FixedUpdate() {
+
+    public void Water(float w) {
+        water = Mathf.Min(water + w, maxWater);
+        gameObject.GetComponent<MeshRenderer>().material = wet;
+    }
+
+    public bool IsFree() {
+        return (plant == null);
+    }
+
+    public bool Plant(Seed s) {
+        if (plant == null) {
+            plant = Instantiate(potato, transform);
+            return true;
+        }
+        return false;
+    }
+
+    public void FixedUpdate() {
         if (plant != null) {
             float requiredWater = waterConsumption * Time.deltaTime;
 

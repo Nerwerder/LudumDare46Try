@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class Container : MonoBehaviour
 {
-    public Material material;
     public PlayerRobot player;
-    public PlayerRobot.PlayerState state;
+    public ContainerType type;
+
+    public enum ContainerType { WaterHole, SeedContainer }
+    public int interactionCost = 0;
 
     void OnMouseDown() {
-        if (player.CanInteract(gameObject.transform)) {
-            player.ChangePlayerState(state, material);  //TODO: Change Money
+        if (player.CanInteract(transform) && player.CanAfford(interactionCost)) {
+            player.InteractWithMe(this);
         }
     }
 }

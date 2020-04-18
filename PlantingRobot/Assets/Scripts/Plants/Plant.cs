@@ -14,7 +14,7 @@ public class Plant : MonoBehaviour
 
     private GameObject currentPlant = null;
 
-    PlantState currentPlantState = PlantState.NotReady;
+    public PlantState currentPlantState = PlantState.NotReady;
     private float plantGrowth = 0f;
 
     public enum PlantState { NotReady, Harvestable, Dead }
