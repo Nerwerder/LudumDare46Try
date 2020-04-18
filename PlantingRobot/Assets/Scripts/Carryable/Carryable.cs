@@ -19,16 +19,9 @@ public abstract class Carryable : MonoBehaviour
     }
 
     /// <summary>
-    /// Interact with the Container c
+    /// Interact with Interactible
     /// </summary>
-    /// <param name="c">The Container to interact with</param>
+    /// <param name="i">The Interactible to interact with</param>
     /// <returns>Return the InteractionResult - was the Interaction successfull and is the Object still the same (or was Destroyed)</returns>
-    public abstract CarryableInteractionResult InteractWith(Container c);
-
-    /// <summary>
-    /// Interact with the Planter p
-    /// </summary>
-    /// <param name="p">The Planter to Interact with</param>
-    /// <returns>Return the InteractionResult - was the Interaction successfull and is the Object still the same (or was Destroyed)</returns>
-    public abstract CarryableInteractionResult InteractWith(Planter p);
+    public abstract CarryableInteractionResult InteractWith(Interactable i);
 }

@@ -35,7 +35,8 @@ public class Plant : MonoBehaviour
         livePoints -= d;
         if (livePoints <= 0) {
             currentPlantState = PlantState.Dead;
-            currentPlant.GetComponent<Renderer>().material = deadPlantMaterial;
+            Debug.Log("Plant is Dead");
+            //currentPlant.GetComponent<Renderer>().material = deadPlantMaterial;   //TODO: what to do?
         }
     }
 
@@ -51,7 +52,7 @@ public class Plant : MonoBehaviour
             currentPlant = Instantiate(plantPhases[currentPlantPhase].gameObject, transform);
             currentPlantPhase++;
 
-            if (currentPlantPhase >= plantPhases.Count - 1) {
+            if (currentPlantPhase >= plantPhases.Count) {
                 currentPlantState = PlantState.Harvestable;
             }
         }

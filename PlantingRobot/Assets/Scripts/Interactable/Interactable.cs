@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Container : MonoBehaviour
+public abstract class Interactable : MonoBehaviour
 {
-    public PlayerRobot player;
-    public ContainerType type;
-
-    public enum ContainerType { WaterContainer, SeedContainer, DropOffContainer }
+    [HideInInspector] public PlayerRobot player = null;
     public int interactionCost = 0;
+
+    public void Start() {
+        player = FindObjectOfType<PlayerRobot>();
+        Debug.Assert(player != null);
+    }
 
     void OnMouseDown() {
         if (player.CanInteract(transform) && player.CanAfford(interactionCost)) {

@@ -13,29 +13,24 @@ public class WateringCan : Tool
         Debug.Assert(maxWater > 0);
         Debug.Assert(wateringAmount > 0);
     }
-
-    public override CarryableInteractionResult InteractWith(Container c)  {
-        switch (c.type) {
-            case Container.ContainerType.WaterContainer:
-                if(curWater < maxWater && player.Pay(c.interactionCost)) {
-                    curWater = maxWater;
-                    return new CarryableInteractionResult(this, true);
-                }       
-                break;
-            default:
-                //Nothing: Every Tool only interacts with relevant other Objects
-                break;
-        }
-        return new CarryableInteractionResult(this, false);
-    }
-
-    public override CarryableInteractionResult InteractWith(Planter p) {
-        //Water the planter
-        float water = Mathf.Min(wateringAmount, curWater);
-        if(water > 0) {
-            p.Water(water);
-            curWater -= water;
-            return new CarryableInteractionResult(this, true);
+    public override CarryableInteractionResult InteractWith(Interactable i) {
+        if (i is Container) {
+            Container c = (Container)i;
+            switch (c.type) {
+                case Container.ContainerType.WaterContainer:
+                    if (curWater < maxWater && player.Pay(c.interactionCost)) {
+                        curWater = maxWater;
+                        return new CarryableInteractionResult(this, true);
+                    }
+                    break;
+            }
+        } else if (i is Planter) {
+            float water = Mathf.Min(wateringAmount, curWater);
+            if (water > 0) {
+                ((Planter)i).Water(water);
+                curWater -= water;
+                return new CarryableInteractionResult(this, true);
+            }
         }
         return new CarryableInteractionResult(this, false);
     }

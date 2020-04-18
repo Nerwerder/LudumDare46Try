@@ -28,31 +28,6 @@ public class PlayerRobot : MonoBehaviour
         }
     }
 
-    public void InteractWithMe(Container c) {
-        if (curCarrying) {
-            var res = curCarrying.InteractWith(c);
-            Carry(res.carryable);    //TODO: Do something with success or failure
-        } else {
-            switch (c.type) {
-                case Container.ContainerType.SeedContainer:
-                    Carry(((SeedContainer)c).BuySeed());
-                    break;
-                default:
-                    //Nothing
-                    break;
-            }
-        }
-    }
-
-    public void InteractWithMe(Planter p) {
-        if(curCarrying) {
-            var res = curCarrying.InteractWith(p);
-            Carry(res.carryable);    //TODO: Do something with success or failure
-        } else {
-            Carry(p.Harvest());
-        }
-    }
-
     public bool CanInteract(Transform other) {
         if ((gameObject.transform.position - other.position).magnitude < interactiveDistance) {
             return true;
@@ -60,12 +35,33 @@ public class PlayerRobot : MonoBehaviour
         return false;
     }
 
+    public void InteractWithMe(Interactable i) {
+        if(curCarrying) {
+            var res = curCarrying.InteractWith(i);
+            Carry(res.carryable); //TODO: Do something with success or failure
+        } else {
+            if(i is Container) {
+                var c = (Container)i;
+                switch (c.type) {
+                    case Container.ContainerType.SeedContainer:
+                        Carry(((SeedContainer)c).BuySeed());
+                        break;
+                    default:
+                        //Nothing
+                        break;
+                }
+            } else if (i is Planter) {
+                Carry(((Planter)i).Harvest());
+            }
+        }
+    }
+
     public bool CanAfford(int m) {
         return money >= m;
     }
 
     public bool Pay(int m) {
-        if (money > m) {
+        if (money >= m) {
             money -= m;
             return true;
         }
