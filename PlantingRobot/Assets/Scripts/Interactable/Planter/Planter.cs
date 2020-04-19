@@ -30,8 +30,7 @@ public class Planter : Interactable
     public InteractionResult Harvest() {
         if (plant != null) {
             InteractionResult res = plant.Harvest(fruitParent);
-            if(res.success) {
-                Destroy(plant.gameObject);
+            if(res.destroyed) {
                 plant = null;
             }
             return res;

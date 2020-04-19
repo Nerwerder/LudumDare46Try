@@ -21,10 +21,15 @@ public class Plant : MonoBehaviour
     public float livePoints = 10f;
     public Material deadPlantMaterial = null;
 
+    //Harvest
+    public bool multipleHarvests = false;
+    public int afterHarvestStage = 0;
+    public float harvestableDecayReduction = 3f;
+
     private int currentPlantPhase = 0;
     private GameObject currentPlant = null;
 
-    public enum PlantState { NotReady, Harvestable, Dead }
+    public enum PlantState { NotReady, Harvestable, Dead}
     private PlantState currentPlantState = PlantState.NotReady;
     private float plantGrowth = 0f;
     private float requiredGrowth = 0f;
@@ -43,12 +48,11 @@ public class Plant : MonoBehaviour
         }
 
         plantGrowth += g;
-        if (plantPhases.Count > currentPlantPhase && plantGrowth >= requiredGrowth) {
+        if (plantPhases.Count > currentPlantPhase && plantGrowth >= plantPhases[currentPlantPhase+1].requiredGrowth) {
             Destroy(currentPlant);
 
             ++currentPlantPhase;
             currentPlant = Instantiate(plantPhases[currentPlantPhase].gameObject, transform);
-            requiredGrowth += plantPhases[currentPlantPhase].requiredGrowth;
 
             //This was the last Phase -> Harvestable
             if (currentPlantPhase >= (plantPhases.Count - 1)) {
@@ -58,11 +62,16 @@ public class Plant : MonoBehaviour
     }
 
     public void Decay(float d) {
-        if (currentPlantState != PlantState.NotReady) {
+        if(currentPlantState == PlantState.Dead) {
             return;
         }
 
-        livePoints -= d;
+        float decay = d;
+        if(currentPlantState == PlantState.Harvestable) {
+            decay /= harvestableDecayReduction;
+        }
+
+        livePoints -= decay;
         if (livePoints <= 0) {
             currentPlantState = PlantState.Dead;
             SetDeadMaterialForAllChildren(transform);
@@ -82,16 +91,27 @@ public class Plant : MonoBehaviour
     public InteractionResult Harvest(Transform parent) {
         switch (currentPlantState) {
             case PlantState.NotReady:
-                return new InteractionResult(null, false);
+                return new InteractionResult(null, false, false);
             case PlantState.Harvestable:
                 Destroy(currentPlant);
-                currentPlant = null;
-                return new InteractionResult(Instantiate<Fruit>(fruit, parent), true);
+                bool destroyed = true;
+                if (multipleHarvests) {
+                    currentPlantState = PlantState.NotReady;
+                    currentPlantPhase = afterHarvestStage;
+                    plantGrowth = plantPhases[currentPlantPhase].requiredGrowth;
+                    currentPlant = Instantiate(plantPhases[currentPlantPhase].gameObject, transform);
+                    destroyed = false;
+                } else {
+                    Destroy(gameObject);
+                    destroyed = true;
+                    currentPlant = null;
+                }
+                return new InteractionResult(Instantiate<Fruit>(fruit, parent), true, destroyed);
             case PlantState.Dead:
                 Destroy(currentPlant);
                 currentPlant = null;
-                return new InteractionResult(null, true); ;
+                return new InteractionResult(null, true, true); ;
         }
-        return new InteractionResult(null, false);
+        return new InteractionResult(null, false, false);
     }
 }
