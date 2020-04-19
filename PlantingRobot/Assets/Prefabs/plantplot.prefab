@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 3874989730956164622}
   - component: {fileID: 8123383700801197334}
   - component: {fileID: 8123383700801197335}
-  - component: {fileID: 6616988772357503929}
   m_Layer: 0
   m_Name: plantplot
   m_TagString: Interactable
@@ -70,20 +69,6 @@ MonoBehaviour:
   water: 0
   maxFertilizer: 20
   fertilizer: 0
---- !u!64 &6616988772357503929
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 260614465953418269}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 2534964839176971238, guid: 1081ffb3102d6d44aa56a4fb728975d1, type: 3}
 --- !u!1 &2233875487502677080
 GameObject:
   m_ObjectHideFlags: 0
@@ -174,6 +159,7 @@ GameObject:
   - component: {fileID: 3043014827380271949}
   - component: {fileID: 375496029417532513}
   - component: {fileID: 5249414669507205129}
+  - component: {fileID: 8138145140713574363}
   m_Layer: 0
   m_Name: Cylinder
   m_TagString: Untagged
@@ -242,3 +228,17 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &8138145140713574363
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3614453128680774681}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 2534964839176971238, guid: 1081ffb3102d6d44aa56a4fb728975d1, type: 3}
