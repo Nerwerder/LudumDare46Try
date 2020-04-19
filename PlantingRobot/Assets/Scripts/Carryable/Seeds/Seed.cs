@@ -8,9 +8,11 @@ public class Seed : Carryable
         if(i is Planter) {
             Planter p = (Planter)i;
             if (p.IsFree()) {
-                p.Plant(this);
-                Destroy(gameObject);
-                return new InteractionResult(null, true);
+                var res = p.Plant(this);
+                if(res.carryable == null) {
+                    Destroy(gameObject);
+                }
+                return res;
             }
         }
         return new InteractionResult(this, false);

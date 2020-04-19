@@ -11,6 +11,9 @@ GameObject:
   - component: {fileID: 5619770202351447035}
   - component: {fileID: 3505605386091925965}
   - component: {fileID: 7177296265695161652}
+  - component: {fileID: 5667731062547590232}
+  - component: {fileID: 4442636082587295092}
+  - component: {fileID: -5506092655526975316}
   m_Layer: 0
   m_Name: BeetSeed
   m_TagString: Untagged
@@ -79,3 +82,45 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &5667731062547590232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8909869255108680168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b220b4b5f3b22094c9613f7aefdf24ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!54 &4442636082587295092
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8909869255108680168}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!64 &-5506092655526975316
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8909869255108680168}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -5495902117074765545, guid: f09d8a79fcf3d8f48bf6dd2d2748fc36, type: 3}

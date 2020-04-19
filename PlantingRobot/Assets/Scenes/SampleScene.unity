@@ -708,7 +708,7 @@ MonoBehaviour:
   player: {fileID: 0}
   type: 1
   seedType: 0
-  seed: {fileID: 5271876163667450416, guid: a56ca86307169344db4b483efa2f3098, type: 3}
+  seed: {fileID: 7752459687795065925, guid: 57eac28cac7e36b4f8646d7fe39c50eb, type: 3}
   seedCost: 10
 --- !u!1 &1338328218
 GameObject:

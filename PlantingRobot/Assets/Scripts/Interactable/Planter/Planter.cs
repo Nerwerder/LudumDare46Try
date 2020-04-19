@@ -32,6 +32,14 @@ public class Planter : Interactable
         return new InteractionResult(null, false);
     }
 
+    public InteractionResult Plant(Seed s) {
+        if (plant == null) {
+            plant = Instantiate(potato, transform);
+            return new InteractionResult(null, false);
+        }
+        return new InteractionResult(s, false);
+    }
+
     public void Water(float w) {
         water = Mathf.Min(water + w, maxWater);
         gameObject.GetComponent<MeshRenderer>().material = wet;
@@ -41,13 +49,6 @@ public class Planter : Interactable
         return (plant == null);
     }
 
-    public bool Plant(Seed s) {
-        if (plant == null) {
-            plant = Instantiate(potato, transform);
-            return true;
-        }
-        return false;
-    }
 
     public void FixedUpdate() {
         if (plant != null) {

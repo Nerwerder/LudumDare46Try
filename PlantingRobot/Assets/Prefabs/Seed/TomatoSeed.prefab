@@ -11,6 +11,9 @@ GameObject:
   - component: {fileID: 3783918726411501803}
   - component: {fileID: 5321047728539302621}
   - component: {fileID: 1937851709173794340}
+  - component: {fileID: 1071323487668331820}
+  - component: {fileID: -1660849618459582587}
+  - component: {fileID: 1523398510934245101}
   m_Layer: 0
   m_Name: TomatoSeed
   m_TagString: Untagged
@@ -79,3 +82,45 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &1071323487668331820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 205045520247436024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b220b4b5f3b22094c9613f7aefdf24ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!54 &-1660849618459582587
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 205045520247436024}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!64 &1523398510934245101
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 205045520247436024}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -5495902117074765545, guid: f09d8a79fcf3d8f48bf6dd2d2748fc36, type: 3}
