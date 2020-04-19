@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1523398510934245101}
   m_Layer: 0
   m_Name: TomatoSeed
-  m_TagString: Untagged
+  m_TagString: Carryable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -94,6 +94,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b220b4b5f3b22094c9613f7aefdf24ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  price: 4
+  plant: {fileID: 8951259213756872154, guid: 035e7487f9e9414439fc41d6eb757a4a, type: 3}
 --- !u!54 &-1660849618459582587
 Rigidbody:
   m_ObjectHideFlags: 0
