@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class PlayerRobot : MonoBehaviour
 {
-    public Material playerMaterial = null;
+    public Transform objectConnectionPoint;
     public float interactiveDistance = 3.0f;
     public int money = 20;
 
     private Carryable curCarrying;
     private MoodLight feedbackLamp;
+    private ArmMovement arms;
     public int feedbackBlinks = 2;
 
     //Special States for Color of Light
@@ -17,12 +18,15 @@ public class PlayerRobot : MonoBehaviour
 
     public void Start() {
         feedbackLamp = gameObject.GetComponent<MoodLight>();
-        feedbackLamp.SetColor(Color.yellow);
+        arms = gameObject.GetComponent<ArmMovement>();
+
+        ChangeColor();
+        arms.ArmsDown();
     }
 
     public void Update() {
         //Move the Payload
-        if(curCarrying is Tool) {
+        if (curCarrying is Tool) {
             Tool t = (Tool)curCarrying;
             t.transform.position = transform.position + transform.forward * t.distance + Vector3.up * t.heightOffset;
             t.transform.forward = -transform.forward;
@@ -30,8 +34,8 @@ public class PlayerRobot : MonoBehaviour
             curCarrying.transform.position = transform.position + Vector3.up * 5;
         }
 
-        if(Input.GetMouseButton(1)) {
-            if(curCarrying) {
+        if (Input.GetMouseButton(1)) {
+            if (curCarrying) {
                 FeedBack(Drop());
             }
         }
@@ -97,9 +101,9 @@ public class PlayerRobot : MonoBehaviour
     }
 
     private void ChangeColor() {
-        if(curCarrying) {
-            if(carryWateringCan) {
-                if(((WateringCan)curCarrying).hasWater()) {
+        if (curCarrying) {
+            if (carryWateringCan) {
+                if (((WateringCan)curCarrying).hasWater()) {
                     feedbackLamp.SetColor(Color.blue);
                 } else {
                     feedbackLamp.SetColor(Color.yellow);
@@ -115,32 +119,40 @@ public class PlayerRobot : MonoBehaviour
         feedbackLamp.SetColorBlink(blinkColor, feedbackBlinks);
     }
 
-    private void Carry (Carryable c) {
+    private void Carry(Carryable c) {
         curCarrying = c;
-        if(curCarrying) {
+        if (curCarrying) {
             curCarrying.GetComponent<Rigidbody>().isKinematic = true;
         }
     }
 
     public bool PickUp(Carryable c) {
-        if(c == null || curCarrying != null) {
+        if (c == null || curCarrying != null) {
             return false;
         }
 
         curCarrying = c;
         curCarrying.GetComponent<Rigidbody>().isKinematic = true;
 
-        if(curCarrying is WateringCan) {
+        if (curCarrying is WateringCan) {
             carryWateringCan = true;
+        }
+
+        if (curCarrying is Fruit || curCarrying is Seed) {
+            arms.ArmsUp();
+        } else {
+            arms.ArmsMid();
         }
         ChangeColor();
         return true;
     }
 
     public bool Drop() {
-        if(curCarrying == null) {
+        if (curCarrying == null) {
             return false;
         }
+
+        arms.ArmsDown();
 
         curCarrying.GetComponent<Rigidbody>().isKinematic = false;
         curCarrying = null;
