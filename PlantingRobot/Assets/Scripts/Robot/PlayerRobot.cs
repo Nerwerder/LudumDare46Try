@@ -89,6 +89,10 @@ public class PlayerRobot : MonoBehaviour
         money += m;
     }
 
+    public int GetMoney() {
+        return money;
+    }
+
     private void ChangeColor() {
         if (curCarrying) {
             if (curCarrying is WateringCan) {

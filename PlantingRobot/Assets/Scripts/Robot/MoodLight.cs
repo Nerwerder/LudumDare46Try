@@ -13,9 +13,7 @@ public class MoodLight : MonoBehaviour
     Vector4 _defaultColor;
     Vector4 currentColor;
 
-    // Start is called before the first frame update
-    void Start()
-    {
+    private void Awake() {
         _lampMaterial = _lamp.GetComponent<Renderer>().material;
         _defaultColor = _lampMaterial.GetVector("Vector4_9C65C2CC");
     }
