@@ -25,10 +25,6 @@ public class InteractionController : MonoBehaviour
                 if(player.CanInteract(hit.transform)) {
                     bool success = false;
 
-                    if (player.HasLaserGun()) {
-                        player.ShootAt(hit);
-                    }
-
                     switch (hit.transform.tag) {
                         case interactableTag:
                             success = player.InteractWithInteractable(hit.transform.gameObject.GetComponent<Interactable>());
@@ -40,6 +36,7 @@ public class InteractionController : MonoBehaviour
                             success = player.InteractWithYourself(hit.transform.gameObject.GetComponent<PlayerRobot>());
                             break;
                     }
+
                     if (success) {
                         break;
                     }

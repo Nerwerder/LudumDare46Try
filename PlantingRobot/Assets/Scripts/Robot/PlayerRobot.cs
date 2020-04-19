@@ -34,10 +34,6 @@ public class PlayerRobot : MonoBehaviour
         return (curCarrying != null && curCarrying is LaserGun);
     }
 
-    public void ShootAt(RaycastHit hit) {
-        ((LaserGun)curCarrying).ShootAt(hit);
-    }
-
     public bool CanInteract(Transform other) {
         float intDis = interactiveDistance;
 
