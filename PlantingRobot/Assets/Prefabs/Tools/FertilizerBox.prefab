@@ -123,8 +123,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 634c2632c4390b74f84a30569c644db9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distance: 5
-  heightOffset: 1
+  oldParent: {fileID: 0}
+  carryOffset: 0
+  toolRange: 10
   maxUses: 5
   costPerUse: 2
   fertilizerPerUse: 10

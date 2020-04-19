@@ -8,6 +8,7 @@ public class Planter : Interactable
     public Material wetMat;
     public Material fertMat;
     public Material wetFertMat;
+    public Renderer groundRenderer;
     public Transform fruitParent = null;
 
     //Water
@@ -19,11 +20,9 @@ public class Planter : Interactable
     public float fertilizer = 0f;
 
     private Plant plant = null;
-    private new Renderer renderer = null;
 
     public new void Start() {
         base.Start();
-        renderer = gameObject.GetComponent<Renderer>();
         Debug.Assert(fruitParent != null);
     }
 
@@ -62,13 +61,13 @@ public class Planter : Interactable
 
     private void ChangeMaterial() {
         if(water > 0 && fertilizer > 0) {
-            renderer.material = wetFertMat;
+            groundRenderer.material = wetFertMat;
         } else if(water > 0) {
-            renderer.material = wetMat;
+            groundRenderer.material = wetMat;
         } else if(fertilizer > 0) {
-            renderer.material = fertMat;
+            groundRenderer.material = fertMat;
         } else {
-            renderer.material = dryMat;
+            groundRenderer.material = dryMat;
         }
     }
 

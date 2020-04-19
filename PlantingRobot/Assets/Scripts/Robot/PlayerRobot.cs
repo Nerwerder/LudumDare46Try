@@ -30,8 +30,22 @@ public class PlayerRobot : MonoBehaviour
         }
     }
 
+    public bool HasLaserGun() {
+        return (curCarrying != null && curCarrying is LaserGun);
+    }
+
+    public void ShootAt(RaycastHit hit) {
+        ((LaserGun)curCarrying).ShootAt(hit);
+    }
+
     public bool CanInteract(Transform other) {
-        if ((gameObject.transform.position - other.position).magnitude < interactiveDistance) {
+        float intDis = interactiveDistance;
+
+        if(curCarrying && curCarrying is Tool) {
+            intDis = ((Tool)curCarrying).toolRange;
+        }
+
+        if ((gameObject.transform.position - other.position).magnitude < intDis) {
             return true;
         }
         return false;

@@ -21,8 +21,14 @@ public class InteractionController : MonoBehaviour
             RaycastHit[] hits;
             hits = Physics.RaycastAll(Camera.main.ScreenPointToRay(Input.mousePosition));
             foreach(RaycastHit hit in hits) {
+
                 if(player.CanInteract(hit.transform)) {
                     bool success = false;
+
+                    if (player.HasLaserGun()) {
+                        player.ShootAt(hit);
+                    }
+
                     switch (hit.transform.tag) {
                         case interactableTag:
                             success = player.InteractWithInteractable(hit.transform.gameObject.GetComponent<Interactable>());
