@@ -11,7 +11,7 @@ public class MoodLight : MonoBehaviour
     public float lightAlpha = 1.5f;
     Material _lampMaterial;
     Vector4 _defaultColor;
-
+    Vector4 currentColor;
 
     // Start is called before the first frame update
     void Start()
@@ -25,12 +25,14 @@ public class MoodLight : MonoBehaviour
     {
         Vector4 color = new Vector4(newColor.x * lightPower, newColor.y * lightPower, newColor.z * lightPower, lightAlpha);
         _lampMaterial.SetVector("Vector4_9C65C2CC", color);
+        currentColor = color;
     }
 
     public void SetColor(Color newColor)
     {
         Vector4 color = new Vector4(newColor.r * lightPower, newColor.g * lightPower, newColor.b * lightPower, lightAlpha);
         _lampMaterial.SetVector("Vector4_9C65C2CC", color);
+        currentColor = color;
     }
 
     //set color for x seconds
@@ -70,9 +72,7 @@ public class MoodLight : MonoBehaviour
     }
 
     IEnumerator BlinkColor(Vector4 color, int times)
-    {
-        Vector4 currentColor = _lampMaterial.GetVector("Vector4_9C65C2CC");
-       
+    {      
         for(int i = 0; i<times; i++)
         {
             _lampMaterial.SetVector("Vector4_9C65C2CC", color);

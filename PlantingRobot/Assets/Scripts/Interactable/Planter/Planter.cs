@@ -29,7 +29,7 @@ public class Planter : Interactable
         if (plant != null) {
             InteractionResult res = plant.Harvest();
             if(res.success) {
-                Destroy(plant);
+                Destroy(plant.gameObject);
                 plant = null;
             }
             return res;

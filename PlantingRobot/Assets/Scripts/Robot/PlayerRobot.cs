@@ -12,6 +12,9 @@ public class PlayerRobot : MonoBehaviour
     private MoodLight feedbackLamp;
     public int feedbackBlinks = 2;
 
+    //Special States for Color of Light
+    private bool carryWateringCan;
+
     public void Start() {
         feedbackLamp = gameObject.GetComponent<MoodLight>();
         feedbackLamp.SetColor(Color.yellow);
@@ -29,7 +32,7 @@ public class PlayerRobot : MonoBehaviour
 
         if(Input.GetMouseButton(1)) {
             if(curCarrying) {
-                DropCarrying();
+                FeedBack(Drop());
             }
         }
     }
@@ -41,7 +44,7 @@ public class PlayerRobot : MonoBehaviour
         return false;
     }
 
-    public void InteractWithMe(Interactable i) {
+    public bool InteractWithInteractable(Interactable i) {
         InteractionResult result = null;
         if (curCarrying) {
             result = curCarrying.InteractWith(i);
@@ -50,6 +53,16 @@ public class PlayerRobot : MonoBehaviour
         }
         Carry(result.carryable);
         FeedBack(result.success);
+        ChangeColor();
+        return true;
+    }
+
+    public bool InteractWithCarryable(Carryable c) {
+        return PickUp(c);
+    }
+
+    public bool InteractWithYourself(PlayerRobot p) {
+        return false;
     }
 
     public InteractionResult InteractWith(Interactable i) {
@@ -83,6 +96,20 @@ public class PlayerRobot : MonoBehaviour
         money += m;
     }
 
+    private void ChangeColor() {
+        if(curCarrying) {
+            if(carryWateringCan) {
+                if(((WateringCan)curCarrying).hasWater()) {
+                    feedbackLamp.SetColor(Color.blue);
+                } else {
+                    feedbackLamp.SetColor(Color.yellow);
+                }
+            }
+        } else {
+            feedbackLamp.SetColor(Color.yellow);
+        }
+    }
+
     private void FeedBack(bool s) {
         var blinkColor = s ? (Color.green) : (Color.red);
         feedbackLamp.SetColorBlink(blinkColor, feedbackBlinks);
@@ -95,23 +122,30 @@ public class PlayerRobot : MonoBehaviour
         }
     }
 
-    public bool PickMeUp(Carryable c) {
+    public bool PickUp(Carryable c) {
         if(c == null || curCarrying != null) {
             return false;
         }
 
         curCarrying = c;
         curCarrying.GetComponent<Rigidbody>().isKinematic = true;
+
+        if(curCarrying is WateringCan) {
+            carryWateringCan = true;
+        }
+        ChangeColor();
         return true;
     }
 
-    public bool DropCarrying() {
+    public bool Drop() {
         if(curCarrying == null) {
             return false;
         }
 
         curCarrying.GetComponent<Rigidbody>().isKinematic = false;
         curCarrying = null;
+        carryWateringCan = false;
+        ChangeColor();
         return true;
     }
 }
