@@ -58,6 +58,8 @@ public class PlayerRobot : MonoBehaviour
             switch (c.type) {
                 case Container.ContainerType.SeedContainer:
                     return ((SeedContainer)c).BuySeed();
+                case Container.ContainerType.FertilizerContainer:
+                    return ((FertilizerContainer)c).BuyFertilizer();
             }
         } else if (i is Planter) {
             return ((Planter)i).Harvest();

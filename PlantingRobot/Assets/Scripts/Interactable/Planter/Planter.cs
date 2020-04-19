@@ -60,7 +60,7 @@ public class Planter : Interactable
     }
 
     private void ChangeMaterial() {
-        if(water > 0 && fertilizer >= 0) {
+        if(water > 0 && fertilizer > 0) {
             renderer.material = wetFertMat;
         } else if(water > 0) {
             renderer.material = wetMat;
@@ -89,7 +89,7 @@ public class Planter : Interactable
                 plant.Grow(growth);
                 water -= consumedWater;
                 fertilizer -= consumedFertilizer;
-                if(water <= 0 || fertilizer <= 0) {
+                if(water <= 0f || fertilizer <= 0f) {
                     ChangeMaterial();
                 }
             } else {

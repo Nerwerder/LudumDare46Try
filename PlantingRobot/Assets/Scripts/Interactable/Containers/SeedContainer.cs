@@ -13,8 +13,7 @@ public class SeedContainer : Container
 
     public InteractionResult BuySeed() {
         if(player.Pay(seed.price)) {
-            var res = Instantiate(seed).GetComponent<Seed>();
-            return new InteractionResult(res, true);
+            return new InteractionResult(Instantiate(seed), true);
         }
         return new InteractionResult(null, false);
     }
