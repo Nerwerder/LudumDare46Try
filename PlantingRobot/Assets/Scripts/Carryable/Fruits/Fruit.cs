@@ -4,18 +4,19 @@ using UnityEngine;
 
 public class Fruit : Carryable
 {
-    [HideInInspector] public int value = 0;
-    public override CarryableInteractionResult InteractWith(Interactable i) {
+    public int value = 0;
+
+    public override InteractionResult InteractWith(Interactable i) {
         if(i is Container) {
             switch (((Container)i).type) {
                 case Container.ContainerType.DropOffContainer:
                     player.Earn(value);
                     Destroy(gameObject);
-                    return new CarryableInteractionResult(null, false);
+                    return new InteractionResult(null, true);
                 default:
-                    return new CarryableInteractionResult(this, false);
+                    return new InteractionResult(this, false);
             }
         }
-        return new CarryableInteractionResult(this, false);
+        return new InteractionResult(this, false);
     }
 }

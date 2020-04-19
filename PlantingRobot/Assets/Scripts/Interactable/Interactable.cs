@@ -5,7 +5,6 @@ using UnityEngine;
 public abstract class Interactable : MonoBehaviour
 {
     [HideInInspector] public PlayerRobot player = null;
-    public int interactionCost = 0;
 
     public void Start() {
         player = FindObjectOfType<PlayerRobot>();
@@ -13,7 +12,7 @@ public abstract class Interactable : MonoBehaviour
     }
 
     void OnMouseDown() {
-        if (player.CanInteract(transform) && player.CanAfford(interactionCost)) {
+        if (player.CanInteract(transform)) {
             player.InteractWithMe(this);
         }
     }

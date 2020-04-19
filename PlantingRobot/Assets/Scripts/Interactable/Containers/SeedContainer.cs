@@ -4,14 +4,17 @@ using UnityEngine;
 
 public class SeedContainer : Container
 {
-    public enum SeedType { Potato, Tomato, Beet}
-    public SeedType seedType;
-    public GameObject Seed;
+    public Seed seed = null;
 
-    public Seed BuySeed() {
-        if(player.Pay(interactionCost)) {
-            return Instantiate(Seed).GetComponent<Seed>();
+    public new void Start() {
+        base.Start();
+        Debug.Assert(seed != null);
+    }
+
+    public InteractionResult BuySeed() {
+        if(player.Pay(seed.price)) {
+            return new InteractionResult(Instantiate(seed), true);
         }
-        return null;
+        return new InteractionResult(null, false);
     }
 }
