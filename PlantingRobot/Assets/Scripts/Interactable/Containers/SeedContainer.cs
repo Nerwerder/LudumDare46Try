@@ -6,12 +6,14 @@ public class SeedContainer : Container
 {
     public enum SeedType { Potato, Tomato, Beet}
     public SeedType seedType;
-    public GameObject Seed;
+    public GameObject seed;
+    public int seedCost = 0;
 
-    public Seed BuySeed() {
-        if(player.Pay(interactionCost)) {
-            return Instantiate(Seed).GetComponent<Seed>();
+    public InteractionResult BuySeed() {
+        if(player.Pay(seedCost)) {
+            var res = Instantiate(seed).GetComponent<Seed>();
+            return new InteractionResult(res, true);
         }
-        return null;
+        return new InteractionResult(null, false);
     }
 }

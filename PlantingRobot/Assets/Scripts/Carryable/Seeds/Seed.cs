@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class Seed : Carryable
 {
-    public override CarryableInteractionResult InteractWith(Interactable i) {
+    public override InteractionResult InteractWith(Interactable i) {
         if(i is Planter) {
             Planter p = (Planter)i;
             if (p.IsFree()) {
                 p.Plant(this);
                 Destroy(gameObject);
-                return new CarryableInteractionResult(null, true);
+                return new InteractionResult(null, true);
             }
         }
-        return new CarryableInteractionResult(this, false);
+        return new InteractionResult(this, false);
     }
 }

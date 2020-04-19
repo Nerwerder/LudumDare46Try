@@ -5,11 +5,17 @@ using UnityEngine;
 public class PlayerRobot : MonoBehaviour
 {
     public Material playerMaterial = null;
-    public GameObject colorChanger = null;
     public float interactiveDistance = 3.0f;
     public int money = 20;
 
     private Carryable curCarrying;
+    private MoodLight feedbackLamp;
+    public int feedbackBlinks = 2;
+
+    public void Start() {
+        feedbackLamp = gameObject.GetComponent<MoodLight>();
+        feedbackLamp.SetColor(Color.yellow);
+    }
 
     public void Update() {
         //Move the Payload
@@ -36,24 +42,27 @@ public class PlayerRobot : MonoBehaviour
     }
 
     public void InteractWithMe(Interactable i) {
-        if(curCarrying) {
-            var res = curCarrying.InteractWith(i);
-            Carry(res.carryable); //TODO: Do something with success or failure
+        InteractionResult result = null;
+        if (curCarrying) {
+            result = curCarrying.InteractWith(i);
         } else {
-            if(i is Container) {
-                var c = (Container)i;
-                switch (c.type) {
-                    case Container.ContainerType.SeedContainer:
-                        Carry(((SeedContainer)c).BuySeed());
-                        break;
-                    default:
-                        //Nothing
-                        break;
-                }
-            } else if (i is Planter) {
-                Carry(((Planter)i).Harvest());
-            }
+            result = InteractWith(i);
         }
+        Carry(result.carryable);
+        FeedBack(result.success);
+    }
+
+    public InteractionResult InteractWith(Interactable i) {
+        if (i is Container) {
+            var c = (Container)i;
+            switch (c.type) {
+                case Container.ContainerType.SeedContainer:
+                    return ((SeedContainer)c).BuySeed();
+            }
+        } else if (i is Planter) {
+            return ((Planter)i).Harvest();
+        }
+        return new InteractionResult(null, false);
     }
 
     public bool CanAfford(int m) {
@@ -70,6 +79,11 @@ public class PlayerRobot : MonoBehaviour
 
     public void Earn(int m) {
         money += m;
+    }
+
+    private void FeedBack(bool s) {
+        var blinkColor = s ? (Color.green) : (Color.red);
+        feedbackLamp.SetColorBlink(blinkColor, feedbackBlinks);
     }
 
     private void Carry (Carryable c) {

@@ -23,5 +23,5 @@ public abstract class Carryable : MonoBehaviour
     /// </summary>
     /// <param name="i">The Interactible to interact with</param>
     /// <returns>Return the InteractionResult - was the Interaction successfull and is the Object still the same (or was Destroyed)</returns>
-    public abstract CarryableInteractionResult InteractWith(Interactable i);
+    public abstract InteractionResult InteractWith(Interactable i);
 }

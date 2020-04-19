@@ -15,23 +15,21 @@ public class Planter : Interactable
     public float waterConsumption = 10;
     public float water = 0;
 
-    public Carryable Harvest() {
+    public InteractionResult Harvest() {
         if (plant != null) {
             var p = plant.GetComponent<Plant>();
             switch (p.currentPlantState) {
                 case global::Plant.PlantState.NotReady:
-                    return null;
+                    return new InteractionResult(null, false);
                 case global::Plant.PlantState.Harvestable:
                 case global::Plant.PlantState.Dead:
                     var ret = p.Harvest();
                     Destroy(plant);
                     plant = null;
-                    return ret;
-                default:
-                    return null;
+                    return new InteractionResult(ret, (ret == null) ? (false) : (true));
             }
         }
-        return null;
+        return new InteractionResult(null, false);
     }
 
     public void Water(float w) {

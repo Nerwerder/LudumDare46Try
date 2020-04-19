@@ -13,14 +13,14 @@ public class WateringCan : Tool
         Debug.Assert(maxWater > 0);
         Debug.Assert(wateringAmount > 0);
     }
-    public override CarryableInteractionResult InteractWith(Interactable i) {
+    public override InteractionResult InteractWith(Interactable i) {
         if (i is Container) {
             Container c = (Container)i;
             switch (c.type) {
                 case Container.ContainerType.WaterContainer:
-                    if (curWater < maxWater && player.Pay(c.interactionCost)) {
+                    if (curWater < maxWater) {
                         curWater = maxWater;
-                        return new CarryableInteractionResult(this, true);
+                        return new InteractionResult(this, true);
                     }
                     break;
             }
@@ -29,9 +29,9 @@ public class WateringCan : Tool
             if (water > 0) {
                 ((Planter)i).Water(water);
                 curWater -= water;
-                return new CarryableInteractionResult(this, true);
+                return new InteractionResult(this, true);
             }
         }
-        return new CarryableInteractionResult(this, false);
+        return new InteractionResult(this, false);
     }
 }
