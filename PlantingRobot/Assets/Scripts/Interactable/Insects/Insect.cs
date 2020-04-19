@@ -96,7 +96,7 @@ public class Insect : Interactable
         Vector3 curPos = transform.position;
         Vector3 targetHeight = new Vector3(curPos.x, ((up) ? (maxFlightHeight) : (minFlightHeight)), curPos.z);
         Vector3 heightChange = (targetHeight - curPos).normalized * upDownSpeed * Time.deltaTime;
-        transform.Translate(heightChange);
+        transform.Translate(heightChange, Space.World);
 
         if (up && transform.position.y > maxFlightHeight) {
             up = false;
@@ -109,7 +109,8 @@ public class Insect : Interactable
         Vector3 curPos = transform.position;
         Vector3 targetPos = new Vector3(target.x, curPos.y, target.z);
         Vector3 posChange = (targetPos - curPos).normalized * movementSpeed * Time.deltaTime;
-        transform.Translate(posChange);
+        transform.Translate(posChange, Space.World);
+        transform.forward = -(targetPos - curPos).normalized;   //TODO: Fix Model Direction
 
         if ((targetPos - curPos).magnitude <= arriveDistance) {
             if (plantTarget == null) {
@@ -125,7 +126,8 @@ public class Insect : Interactable
         Vector3 curPos = transform.position;
         Vector3 targetPos = new Vector3(circleTarget.x, curPos.y, circleTarget.z);
         Vector3 posChange = (targetPos - curPos).normalized * movementSpeed * Time.deltaTime;
-        transform.Translate(posChange);
+        transform.Translate(posChange, Space.World);
+        transform.forward = -(targetPos - curPos).normalized;   //TODO: Fix Model Direction
 
         if ((targetPos - curPos).magnitude <= (arriveDistance / 2)) {
             circleTarget = GetCircleTarget();
