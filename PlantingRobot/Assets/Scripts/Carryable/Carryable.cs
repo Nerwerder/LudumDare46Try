@@ -12,12 +12,6 @@ public abstract class Carryable : MonoBehaviour
         Debug.Assert(gameObject.GetComponent<Rigidbody>() != null);
     }
 
-    void OnMouseDown() {
-        if (player.CanInteract(transform)) {
-            player.PickMeUp(this);
-        }
-    }
-
     /// <summary>
     /// Interact with Interactible
     /// </summary>

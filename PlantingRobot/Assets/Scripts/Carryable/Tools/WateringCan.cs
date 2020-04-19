@@ -13,6 +13,7 @@ public class WateringCan : Tool
         Debug.Assert(maxWater > 0);
         Debug.Assert(wateringAmount > 0);
     }
+
     public override InteractionResult InteractWith(Interactable i) {
         if (i is Container) {
             Container c = (Container)i;
@@ -33,5 +34,9 @@ public class WateringCan : Tool
             }
         }
         return new InteractionResult(this, false);
+    }
+
+    public bool hasWater() {
+        return curWater > 0;
     }
 }
