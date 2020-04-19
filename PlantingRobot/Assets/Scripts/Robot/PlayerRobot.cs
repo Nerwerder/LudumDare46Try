@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class PlayerRobot : MonoBehaviour
 {
-    public Transform objectConnectionPoint;
+    public Transform carryConnectioPoint;
+
     public float interactiveDistance = 3.0f;
     public int money = 20;
 
@@ -13,27 +14,15 @@ public class PlayerRobot : MonoBehaviour
     private ArmMovement arms;
     public int feedbackBlinks = 2;
 
-    //Special States for Color of Light
-    private bool carryWateringCan;
-
     public void Start() {
         feedbackLamp = gameObject.GetComponent<MoodLight>();
         arms = gameObject.GetComponent<ArmMovement>();
 
         ChangeColor();
-        arms.ArmsDown();
+        ControlArms();
     }
 
     public void Update() {
-        //Move the Payload
-        if (curCarrying is Tool) {
-            Tool t = (Tool)curCarrying;
-            t.transform.position = transform.position + transform.forward * t.distance + Vector3.up * t.heightOffset;
-            t.transform.forward = -transform.forward;
-        } else if (curCarrying is Seed || curCarrying is Fruit) {
-            curCarrying.transform.position = transform.position + Vector3.up * 5;
-        }
-
         if (Input.GetMouseButton(1)) {
             if (curCarrying) {
                 FeedBack(Drop());
@@ -69,7 +58,7 @@ public class PlayerRobot : MonoBehaviour
         return false;
     }
 
-    public InteractionResult InteractWith(Interactable i) {
+    private InteractionResult InteractWith(Interactable i) {
         if (i is Container) {
             var c = (Container)i;
             switch (c.type) {
@@ -102,7 +91,7 @@ public class PlayerRobot : MonoBehaviour
 
     private void ChangeColor() {
         if (curCarrying) {
-            if (carryWateringCan) {
+            if (curCarrying is WateringCan) {
                 if (((WateringCan)curCarrying).hasWater()) {
                     feedbackLamp.SetColor(Color.blue);
                 } else {
@@ -120,10 +109,24 @@ public class PlayerRobot : MonoBehaviour
     }
 
     private void Carry(Carryable c) {
+        if(curCarrying == c) {
+            return;
+        }
+
         curCarrying = c;
         if (curCarrying) {
             curCarrying.GetComponent<Rigidbody>().isKinematic = true;
+            curCarrying.oldParent = curCarrying.transform.parent;
+            curCarrying.transform.SetParent(carryConnectioPoint.transform);
+            curCarrying.transform.position = carryConnectioPoint.transform.position;
+            if(curCarrying is Tool) {
+                curCarrying.transform.forward = -gameObject.transform.forward;  //TODO: Fix Tool-Models
+                curCarrying.transform.position += ((Tool)curCarrying).carryOffset * curCarrying.transform.forward;
+            }
         }
+
+        ControlArms();
+        ChangeColor();
     }
 
     public bool PickUp(Carryable c) {
@@ -131,19 +134,7 @@ public class PlayerRobot : MonoBehaviour
             return false;
         }
 
-        curCarrying = c;
-        curCarrying.GetComponent<Rigidbody>().isKinematic = true;
-
-        if (curCarrying is WateringCan) {
-            carryWateringCan = true;
-        }
-
-        if (curCarrying is Fruit || curCarrying is Seed) {
-            arms.ArmsUp();
-        } else {
-            arms.ArmsMid();
-        }
-        ChangeColor();
+        Carry(c);
         return true;
     }
 
@@ -152,12 +143,31 @@ public class PlayerRobot : MonoBehaviour
             return false;
         }
 
-        arms.ArmsDown();
-
         curCarrying.GetComponent<Rigidbody>().isKinematic = false;
+        if (curCarrying.oldParent) {
+            curCarrying.transform.SetParent(curCarrying.oldParent);
+            curCarrying.oldParent = null;
+        }
+
         curCarrying = null;
-        carryWateringCan = false;
+
+        ControlArms();
         ChangeColor();
         return true;
     }
+
+    private void ControlArms() {
+        if(curCarrying && (curCarrying is Fruit || curCarrying is Seed)) {
+            arms.ArmsUp();
+        } else {
+            arms.ArmsMid();
+        }
+    }
+
+    public enum ChangeOfArms { Dip}
+    public void RequestArmMovement(ChangeOfArms c) {
+        arms.ArmsDown();
+    }
+
+
 }

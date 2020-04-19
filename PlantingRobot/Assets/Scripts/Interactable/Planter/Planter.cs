@@ -8,6 +8,7 @@ public class Planter : Interactable
     public Material wetMat;
     public Material fertMat;
     public Material wetFertMat;
+    public Transform fruitParent = null;
 
     //Water
     public float maxWater = 40f;
@@ -23,11 +24,12 @@ public class Planter : Interactable
     public new void Start() {
         base.Start();
         renderer = gameObject.GetComponent<Renderer>();
+        Debug.Assert(fruitParent != null);
     }
 
     public InteractionResult Harvest() {
         if (plant != null) {
-            InteractionResult res = plant.Harvest();
+            InteractionResult res = plant.Harvest(fruitParent);
             if(res.success) {
                 Destroy(plant.gameObject);
                 plant = null;

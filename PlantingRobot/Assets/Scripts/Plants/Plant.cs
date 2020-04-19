@@ -79,15 +79,14 @@ public class Plant : MonoBehaviour
         }
     }
 
-    public InteractionResult Harvest() {
+    public InteractionResult Harvest(Transform parent) {
         switch (currentPlantState) {
             case PlantState.NotReady:
                 return new InteractionResult(null, false);
             case PlantState.Harvestable:
-                var ret = Instantiate<Fruit>(fruit);
                 Destroy(currentPlant);
                 currentPlant = null;
-                return new InteractionResult(ret, true);
+                return new InteractionResult(Instantiate<Fruit>(fruit, parent), true);
             case PlantState.Dead:
                 Destroy(currentPlant);
                 currentPlant = null;

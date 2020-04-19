@@ -5,6 +5,7 @@ using UnityEngine;
 public abstract class Carryable : MonoBehaviour
 {
     protected PlayerRobot player = null;
+    [HideInInspector] public Transform oldParent = null;
 
     public void Start() {
         player = FindObjectOfType<PlayerRobot>();

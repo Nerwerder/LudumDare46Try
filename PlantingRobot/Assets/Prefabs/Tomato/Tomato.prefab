@@ -55,5 +55,5 @@ MonoBehaviour:
   requiresWater: 1
   waterBoost: 1
   waterConsumption: 3
-  livePoints: 12
+  livePoints: 25
   deadPlantMaterial: {fileID: 2100000, guid: 9f22d6f259a35964e9c0904ccc210863, type: 2}

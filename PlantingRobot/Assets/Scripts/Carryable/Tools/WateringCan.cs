@@ -21,6 +21,7 @@ public class WateringCan : Tool
                 case Container.ContainerType.WaterContainer:
                     if (curWater < maxWater) {
                         curWater = maxWater;
+                        player.RequestArmMovement(PlayerRobot.ChangeOfArms.Dip);
                         return new InteractionResult(this, true);
                     }
                     break;
