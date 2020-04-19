@@ -43,13 +43,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6aa7d25e0737cb944af9a305fbb49734, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deadPlantMaterial: {fileID: 2100000, guid: 9f22d6f259a35964e9c0904ccc210863, type: 2}
   plantPhases:
   - {fileID: 2266485110178106087, guid: 809de262229cafc469999e1e0bddc794, type: 3}
   - {fileID: -5852325229582332917, guid: fe8f9e57e5963fe4f882bb9b4c824dda, type: 3}
   - {fileID: 7470213545705047612, guid: fc1a8a86865b9f84e83508e7300b415b, type: 3}
   fruit: {fileID: 676983473390920715, guid: 7dd95104e1c23f948925ec98e5d43c51, type: 3}
-  price: 7
-  value: 21
-  livePoints: 9
-  currentPlantState: 0
+  requiresFertilizer: 0
+  fertilizerBoost: 2
+  fertilizerConsumption: 1
+  requiresWater: 1
+  waterBoost: 1
+  waterConsumption: 5
+  livePoints: 40
+  deadPlantMaterial: {fileID: 2100000, guid: 9f22d6f259a35964e9c0904ccc210863, type: 2}

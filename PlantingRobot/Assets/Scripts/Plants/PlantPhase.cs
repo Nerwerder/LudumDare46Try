@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class PlantPhase : MonoBehaviour
 {
-    public float requiredTime = 1.0f;
+    public float requiredGrowth = 1.0f;
 }

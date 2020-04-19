@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Fruit : Carryable
 {
-    [HideInInspector] public int value = 0;
+    public int value = 0;
+
     public override InteractionResult InteractWith(Interactable i) {
         if(i is Container) {
             switch (((Container)i).type) {

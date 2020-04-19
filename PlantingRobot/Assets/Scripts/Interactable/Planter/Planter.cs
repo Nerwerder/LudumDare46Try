@@ -4,70 +4,99 @@ using UnityEngine;
 
 public class Planter : Interactable
 {
-    public Material dry;
-    public Material wet;
-
-    public GameObject potato; //TODO: remove
-    private GameObject plant = null;
+    public Material dryMat;
+    public Material wetMat;
+    public Material fertMat;
+    public Material wetFertMat;
 
     //Water
-    public float maxWater = 40;
-    public float waterConsumption = 10;
-    public float water = 0;
+    public float maxWater = 40f;
+    public float water = 0f;
+
+    //Fertilizer
+    public float maxFertilizer = 20f;
+    public float fertilizer = 0f;
+
+    private Plant plant = null;
+    private new Renderer renderer = null;
+
+    public new void Start() {
+        base.Start();
+        renderer = gameObject.GetComponent<Renderer>();
+    }
 
     public InteractionResult Harvest() {
         if (plant != null) {
-            var p = plant.GetComponent<Plant>();
-            switch (p.currentPlantState) {
-                case global::Plant.PlantState.NotReady:
-                    return new InteractionResult(null, false);
-                case global::Plant.PlantState.Harvestable:
-                case global::Plant.PlantState.Dead:
-                    var ret = p.Harvest();
-                    Destroy(plant);
-                    plant = null;
-                    return new InteractionResult(ret, (ret == null) ? (false) : (true));
+            InteractionResult res = plant.Harvest();
+            if(res.success) {
+                Destroy(plant);
+                plant = null;
             }
+            return res;
         }
         return new InteractionResult(null, false);
     }
 
     public InteractionResult Plant(Seed s) {
         if (plant == null) {
-            plant = Instantiate(potato, transform);
-            return new InteractionResult(null, false);
+            plant = Instantiate<Plant>(s.plant, transform);
+            return new InteractionResult(null, true);
         }
         return new InteractionResult(s, false);
     }
 
     public void Water(float w) {
         water = Mathf.Min(water + w, maxWater);
-        gameObject.GetComponent<MeshRenderer>().material = wet;
+        ChangeMaterial();
+    }
+
+    public void Fertilize(float f) {
+        fertilizer = Mathf.Min(fertilizer + f, maxFertilizer);
+        ChangeMaterial();
     }
 
     public bool IsFree() {
         return (plant == null);
     }
 
+    private void ChangeMaterial() {
+        if(water > 0 && fertilizer >= 0) {
+            renderer.material = wetFertMat;
+        } else if(water > 0) {
+            renderer.material = wetMat;
+        } else if(fertilizer > 0) {
+            renderer.material = fertMat;
+        } else {
+            renderer.material = dryMat;
+        }
+    }
 
     public void FixedUpdate() {
         if (plant != null) {
-            float requiredWater = waterConsumption * Time.deltaTime;
 
-            if (water > 0) {
-                float consumedWater = Mathf.Min(requiredWater, water);
+            //Water
+            float requiredWater = plant.waterConsumption * Time.deltaTime;
+            float consumedWater = Mathf.Min(requiredWater, water);
+            bool waterOK = (plant.requiresWater) ? (consumedWater > 0) : (true); 
 
-                float growth = consumedWater / waterConsumption;
-                plant.GetComponent<Plant>().Grow(growth);
+            //Fertilizer
+            float requiredFertilizer = plant.fertilizerConsumption * Time.deltaTime;
+            float consumedFertilizer = Mathf.Min(requiredFertilizer, fertilizer);
+            bool fertilizerOK = (plant.requiresFertilizer) ? (consumedFertilizer > 0) : (true);
 
+            if (waterOK && fertilizerOK) {
+                float growth = (consumedWater / plant.waterConsumption) * plant.waterBoost + (consumedFertilizer / plant.fertilizerConsumption) * plant.fertilizerBoost;
+                plant.Grow(growth);
                 water -= consumedWater;
-                if (water <= 0) {
-                    water = 0;
-                    gameObject.GetComponent<MeshRenderer>().material = dry;
+                fertilizer -= consumedFertilizer;
+                if(water <= 0 || fertilizer <= 0) {
+                    ChangeMaterial();
                 }
             } else {
-                float decay = requiredWater / waterConsumption;
-                plant.GetComponent<Plant>().Decay(decay);
+                float decay = 0f;
+                decay += (plant.requiresWater) ? (requiredWater) : (0f);
+                decay += (plant.requiresFertilizer) ? (requiredFertilizer) : (0f);
+                plant.Decay(decay);
             }
         }
     }
