@@ -78,6 +78,10 @@ public class Plant : MonoBehaviour
         }
     }
 
+    public void InsectAttack(float power) {
+        Decay(power);
+    }
+
     private void SetDeadMaterialForAllChildren(Transform t) {
         foreach (Transform child in t) {
             SetDeadMaterialForAllChildren(child);

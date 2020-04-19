@@ -27,7 +27,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4712222364958780421}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 11.16, z: 15.77}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -106,3 +106,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba88a031d6eb04649bc5e0b3c6a326b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxFlightHeight: 9
+  minFlightHeight: 4
+  upDownSpeed: 1.3
+  targetUpdateTime: 1
+  movementSpeed: 1.7
+  arriveDistance: 2
+  circleDistance: 5
+  attackPower: 7
