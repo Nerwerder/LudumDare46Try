@@ -43,7 +43,6 @@ public class InsectSpawner : MonoBehaviour
         timer += Time.deltaTime;
         if(timer >= nextSpawn) {
             SpawnInsect();
-            averageSpawnTime /= spawnSpeedup;
             nextSpawn = CalculateNextSpawnTime();
             timer = 0f;
         }
@@ -69,6 +68,10 @@ public class InsectSpawner : MonoBehaviour
 
         //Spawn the insect
         Instantiate(insect, spawnPoint, Quaternion.identity, insectParent);
+
+        averageSpawnTime /= spawnSpeedup;
+        minSpawnTimeVariance /= spawnSpeedup;
+        maxSpawnTimeVariance /= spawnSpeedup;
     }
 
     private Vector3 RandomPointOnCircleEdge(float radius) {

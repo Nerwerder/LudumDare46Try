@@ -20,16 +20,24 @@ public class Planter : Interactable
     public float fertilizer = 0f;
 
     private Plant plant = null;
+    private PlanterRegistry planterReg = null;
 
     public new void Start() {
         base.Start();
         Debug.Assert(fruitParent != null);
+        planterReg = FindObjectOfType<PlanterRegistry>();
+        Debug.Assert(planterReg != null);
+        planterReg.RegisterPlanter(this);
+    }
+    ~Planter() {
+        planterReg.DeregisterPlanter(this); //TODO: It could be a good Idea?
     }
 
     public InteractionResult Harvest() {
         if (plant != null) {
             InteractionResult res = plant.Harvest(fruitParent);
             if(res.destroyed) {
+                planterReg.DeregisterPlant(plant);
                 plant = null;
             }
             return res;
@@ -40,6 +48,7 @@ public class Planter : Interactable
     public InteractionResult Plant(Seed s) {
         if (plant == null) {
             plant = Instantiate<Plant>(s.plant, transform);
+            planterReg.RegisterPlant(plant);
             return new InteractionResult(null, true);
         }
         return new InteractionResult(s, false);
