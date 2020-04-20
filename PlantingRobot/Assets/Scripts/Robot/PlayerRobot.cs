@@ -13,6 +13,7 @@ public class PlayerRobot : MonoBehaviour
     private MoodLight feedbackLamp;
     private ArmMovement arms;
     public int feedbackBlinks = 2;
+    public float throwPower = 0f;
 
     public void Start() {
         feedbackLamp = gameObject.GetComponent<MoodLight>();
@@ -23,10 +24,12 @@ public class PlayerRobot : MonoBehaviour
     }
 
     public void Update() {
-        if (Input.GetMouseButton(1)) {
-            if (curCarrying) {
-                FeedBack(Drop());
-            }
+        if(Input.GetMouseButtonDown(1)) {
+            FeedBack(Throw());      
+        }
+
+        if(Input.GetKeyDown(KeyCode.Space)) {
+            FeedBack(Drop());
         }
     }
 
@@ -128,6 +131,7 @@ public class PlayerRobot : MonoBehaviour
         }
 
         curCarrying = c;
+        curCarrying.DeactivateThrownMode();
         if (curCarrying) {
             curCarrying.GetComponent<Rigidbody>().isKinematic = true;
             curCarrying.oldParent = curCarrying.transform.parent;
@@ -164,7 +168,31 @@ public class PlayerRobot : MonoBehaviour
         }
 
         curCarrying = null;
+        ControlArms();
+        ChangeColor();
+        return true;
+    }
 
+    public bool Throw() {
+        if(curCarrying == null) {
+            return false;
+        }
+
+        curCarrying.GetComponent<Rigidbody>().isKinematic = false;
+        if (curCarrying.oldParent) {
+            curCarrying.transform.SetParent(curCarrying.oldParent);
+            curCarrying.oldParent = null;
+        }
+
+        //Get VectorToTarget
+        RaycastHit hit;
+        if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 1000)) {
+            Vector3 ThrowVector = (hit.point - transform.position) * throwPower;
+            curCarrying.GetComponent<Rigidbody>().AddForce(ThrowVector);
+            curCarrying.ActivateThrownMode();
+        }
+
+        curCarrying = null;
         ControlArms();
         ChangeColor();
         return true;

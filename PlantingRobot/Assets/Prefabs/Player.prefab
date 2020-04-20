@@ -197,6 +197,7 @@ MonoBehaviour:
   interactiveDistance: 10
   money: 20
   feedbackBlinks: 2
+  throwPower: 50
 --- !u!114 &1353519271525265803
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -211,6 +212,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 11
   rotateToMouse: 1
+  trackLeft: {fileID: 6226907260561895681}
+  trackRight: {fileID: 3095135599079874140}
 --- !u!114 &7388030708353571763
 MonoBehaviour:
   m_ObjectHideFlags: 0
