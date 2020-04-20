@@ -13,6 +13,7 @@ public class GameController : MonoBehaviour
     public GameObject _menuCam;
     public GameObject _exitButton;
     public GameObject _help;
+    public GameObject _money;
     private AudioSource audioSource = null;
     private bool music = true;
 
@@ -76,6 +77,7 @@ public class GameController : MonoBehaviour
         {
             _menuParent.SetActive(false);
             _menuCam.SetActive(false);
+            _money.SetActive(true);
             _menuState = false;
             ChangePauseState();
         }
@@ -83,6 +85,7 @@ public class GameController : MonoBehaviour
         {
             _menuParent.SetActive(true);
             _menuCam.SetActive(true);
+            _money.SetActive(false);
             _menuState = true;
             ChangePauseState();
         }
