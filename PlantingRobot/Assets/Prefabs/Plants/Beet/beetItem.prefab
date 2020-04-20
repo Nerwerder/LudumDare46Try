@@ -288,7 +288,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   oldParent: {fileID: 0}
-  value: 15
+  value: 30
 --- !u!64 &5949956645791150916
 MeshCollider:
   m_ObjectHideFlags: 0

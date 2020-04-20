@@ -95,7 +95,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   oldParent: {fileID: 0}
-  price: 7
+  price: 13
   plant: {fileID: 7909491424582634687, guid: 3e230899f2543b04ab433a8adb28ce6d, type: 3}
 --- !u!54 &6902782527445576066
 Rigidbody:

@@ -49,12 +49,12 @@ MonoBehaviour:
   - {fileID: 7470213545705047612, guid: fc1a8a86865b9f84e83508e7300b415b, type: 3}
   fruit: {fileID: 167030778698931228, guid: 0d17cc8595585b84984606998f1444b7, type: 3}
   requiresFertilizer: 0
-  fertilizerBoost: 2
-  fertilizerConsumption: 1
+  fertilizerBoost: 6
+  fertilizerConsumption: 0.05
   requiresWater: 1
-  waterBoost: 1.4
-  waterConsumption: 1.3
-  livePoints: 70
+  waterBoost: 2
+  waterConsumption: 0.4
+  livePoints: 40
   deadPlantMaterial: {fileID: 2100000, guid: 9f22d6f259a35964e9c0904ccc210863, type: 2}
   multipleHarvests: 0
   afterHarvestStage: 0
