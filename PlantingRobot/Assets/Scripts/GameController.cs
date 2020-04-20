@@ -10,6 +10,7 @@ public class GameController : MonoBehaviour
 
     public GameObject _menuParent;
     public GameObject _menuCam;
+    public GameObject _exitButton;
     private AudioSource audioSource = null;
     private bool music = true;
 
@@ -17,7 +18,11 @@ public class GameController : MonoBehaviour
     {
         Time.timeScale = 0.0f;
         _pause = true;
-        audioSource = gameObject.GetComponent<AudioSource>();    
+        audioSource = gameObject.GetComponent<AudioSource>();
+
+#if UNITY_WEBGL
+        _exitButton.SetActive(false);
+#endif
     }
 
     void Update()
@@ -41,7 +46,7 @@ public class GameController : MonoBehaviour
 
 
 
-    void QuitGame()
+    public void QuitGame()
     {
         Application.Quit();
     }
