@@ -67,7 +67,7 @@ MonoBehaviour:
   minFlightHeight: 4
   upDownSpeed: 1.3
   targetUpdateTime: 1
-  movementSpeed: 2.2
+  movementSpeed: 2.7
   arriveDistance: 2
   circleDistance: 5
   attackPower: 4

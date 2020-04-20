@@ -145,7 +145,7 @@ MonoBehaviour:
   carryOffset: 0
   toolRange: 10
   level: 2
-  cost: 160
+  cost: 50
   maxUses: 4
   costPerUse: 2
   fertilizerPerUse: 20
