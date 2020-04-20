@@ -40,4 +40,17 @@ public class PlanterRegistry : MonoBehaviour
         int index = Random.Range(0, (plants.Count - 1));
         return plants[index];
     }
+
+    public List<Planter> GetNearPlanters(Planter p, float range) {
+        List<Planter> ret = new List<Planter>();
+        foreach(Planter pt in planters) {
+            if(pt == p) {
+                continue;
+            }
+            if((pt.transform.position-p.transform.position).magnitude <= range) {
+                ret.Add(pt);
+            }
+        }
+        return ret;
+    }
 }

@@ -9,25 +9,32 @@ public class Planter : Interactable
     public Material fertMat;
     public Material wetFertMat;
     public Renderer groundRenderer;
-    public Transform fruitParent = null;
 
     //Water
-    public float maxWater = 40f;
-    public float water = 0f;
+    public float maxWater = 60f;
+    public float defaultWaterConsumption = 1f;
+
+    private float curWater = 0f;
 
     //Fertilizer
     public float maxFertilizer = 20f;
-    public float fertilizer = 0f;
+    private float curFertilizer = 0f;
 
     private Plant plant = null;
     private PlanterRegistry planterReg = null;
 
+    private FruitRegistry fruitReg = null;
+    private Transform fruitParent = null;
+
     public new void Start() {
         base.Start();
-        Debug.Assert(fruitParent != null);
         planterReg = FindObjectOfType<PlanterRegistry>();
         Debug.Assert(planterReg != null);
         planterReg.RegisterPlanter(this);
+        fruitReg = FindObjectOfType<FruitRegistry>();
+        Debug.Assert(fruitReg != null);
+        fruitParent = fruitReg.GetFruitParent();
+        Debug.Assert(fruitParent != null);
     }
     ~Planter() {
         planterReg.DeregisterPlanter(this); //TODO: It could be a good Idea?
@@ -55,12 +62,12 @@ public class Planter : Interactable
     }
 
     public void Water(float w) {
-        water = Mathf.Min(water + w, maxWater);
+        curWater = Mathf.Min(curWater + w, maxWater);
         ChangeMaterial();
     }
 
     public void Fertilize(float f) {
-        fertilizer = Mathf.Min(fertilizer + f, maxFertilizer);
+        curFertilizer = Mathf.Min(curFertilizer + f, maxFertilizer);
         ChangeMaterial();
     }
 
@@ -69,11 +76,11 @@ public class Planter : Interactable
     }
 
     private void ChangeMaterial() {
-        if(water > 0 && fertilizer > 0) {
+        if(curWater > 0 && curFertilizer > 0) {
             groundRenderer.material = wetFertMat;
-        } else if(water > 0) {
+        } else if(curWater > 0) {
             groundRenderer.material = wetMat;
-        } else if(fertilizer > 0) {
+        } else if(curFertilizer > 0) {
             groundRenderer.material = fertMat;
         } else {
             groundRenderer.material = dryMat;
@@ -81,31 +88,36 @@ public class Planter : Interactable
     }
 
     public void FixedUpdate() {
+
+        //WaterConsumption
+        float planterWaterRequirement = defaultWaterConsumption * Time.deltaTime;
+        float plantWaterRequirement = ((plant) ? (plant.waterConsumption) : (0f)) * Time.deltaTime;
+        float waterConsumption = Mathf.Min((planterWaterRequirement + plantWaterRequirement), curWater);
+
         if (plant != null) {
 
-            //Water
-            float requiredWater = plant.waterConsumption * Time.deltaTime;
-            float consumedWater = Mathf.Min(requiredWater, water);
-            bool waterOK = (plant.requiresWater) ? (consumedWater > 0) : (true); 
-
             //Fertilizer
-            float requiredFertilizer = plant.fertilizerConsumption * Time.deltaTime;
-            float consumedFertilizer = Mathf.Min(requiredFertilizer, fertilizer);
-            bool fertilizerOK = (plant.requiresFertilizer) ? (consumedFertilizer > 0) : (true);
+            float plantFertilizerRequirement = plant.fertilizerConsumption * Time.deltaTime;
+            float fertilizerConsumption = (plant.requiresFertilizer) ? (Mathf.Min(plantFertilizerRequirement, curFertilizer)) : (0f);
 
-            if (waterOK && fertilizerOK) {
-                float growth = (consumedWater / plant.waterConsumption) * plant.waterBoost + (consumedFertilizer / plant.fertilizerConsumption) * plant.fertilizerBoost;
+            if ((curWater > 0) && ((plant.requiresFertilizer) ? (fertilizerConsumption > 0) : (true))) {
+                float growth = waterConsumption * plant.waterBoost + fertilizerConsumption * plant.fertilizerBoost;
                 plant.Grow(growth);
-                water -= consumedWater;
-                fertilizer -= consumedFertilizer;
-                if(water <= 0f || fertilizer <= 0f) {
-                    ChangeMaterial();
-                }
             } else {
-                float decay = 0f;
-                decay += (plant.requiresWater) ? (requiredWater) : (0f);
-                decay += (plant.requiresFertilizer) ? (requiredFertilizer) : (0f);
+                float decay = ((plant.requiresWater) ? (planterWaterRequirement) : (0f)) + ((plant.requiresFertilizer) ? (plantFertilizerRequirement) : (0f));
                 plant.Decay(decay);
+            }
+
+            curFertilizer -= fertilizerConsumption;
+            if(curFertilizer <= 0f) {
+                ChangeMaterial();
+            }
+        }
+
+        if(curWater >= 0f) {
+            curWater -= waterConsumption;
+            if(curWater <= 0f) {
+                ChangeMaterial();
             }
         }
     }
