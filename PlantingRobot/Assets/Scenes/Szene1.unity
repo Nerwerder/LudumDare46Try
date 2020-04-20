@@ -1725,6 +1725,10 @@ PrefabInstance:
       propertyPath: money
       value: 35
       objectReference: {fileID: 0}
+    - target: {fileID: 520468583, guid: c73534ebf947679438e74fcf71a5a7d5, type: 3}
+      propertyPath: throwPower
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 520468584, guid: c73534ebf947679438e74fcf71a5a7d5, type: 3}
       propertyPath: speed
       value: 14
@@ -2737,6 +2741,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8138145140713574363, guid: c25f283d8fb34e24d81de7a25b27cf6b,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c25f283d8fb34e24d81de7a25b27cf6b, type: 3}
