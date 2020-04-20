@@ -56,4 +56,8 @@ public class WateringCan : Tool
     public bool hasWater() {
         return curWater > 0;
     }
+
+    public new void OnDestroy() {
+        base.OnDestroy();
+    }
 }

@@ -40,4 +40,8 @@ public class FertilizerBox : Tool
         }
         return new InteractionResult(this, false, false);
     }
+
+    public new void OnDestroy() {
+        base.OnDestroy();
+    }
 }

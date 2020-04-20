@@ -32,4 +32,8 @@ public class InsectRegistry : MonoBehaviour
         }
         return ret;
     }
+
+    public int GetNumberOfInsects() {
+        return insects.Count;
+    }
 }

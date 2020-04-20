@@ -71,6 +71,7 @@ public class PlayerRobot : MonoBehaviour
     private void SummonTools() {
         var tools = toolsReg.GetAllTools();
         foreach(Tool t in tools) {
+            t.GetComponent<Rigidbody>().velocity = Vector3.zero;
             t.transform.position = transform.position + RandomPointOnCircleEdge(toolSummonRadius) + Vector3.up * toolSommunUp;
         }
     }

@@ -37,6 +37,8 @@ public class InsectSpawner : MonoBehaviour
 
     private InsectRegistry insectReg = null;
     private Transform insectParent = null;
+
+    public int maxNumberOfInsects = 200;
     void Start() {
         nextSpawn = CalculateNextSpawnTime();
         insectReg = FindObjectOfType<InsectRegistry>();
@@ -64,6 +66,10 @@ public class InsectSpawner : MonoBehaviour
     }
 
     void SpawnInsect() {
+        if(insectReg.GetNumberOfInsects() >= maxNumberOfInsects) {
+            return;
+        }
+
         //Which Insect so Spawn
         Debug.Assert(insects.Count >= 1);
         int insectIndex = Random.Range(0, (insects.Count - 1));

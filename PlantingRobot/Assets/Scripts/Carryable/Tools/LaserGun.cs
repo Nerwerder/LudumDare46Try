@@ -79,4 +79,8 @@ public class LaserGun : Tool
         yield return new WaitForSeconds(laserDuration);
         lRen.enabled = false;
     }
+
+    public new void OnDestroy() {
+        base.OnDestroy();
+    }
 }

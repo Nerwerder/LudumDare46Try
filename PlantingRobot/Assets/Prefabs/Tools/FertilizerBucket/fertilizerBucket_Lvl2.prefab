@@ -148,7 +148,7 @@ MonoBehaviour:
   cost: 40
   maxUses: 4
   costPerUse: 2
-  fertilizerPerUse: 10
+  fertilizerPerUse: 15
   bonusFertilizationPower: 1
 --- !u!1 &7194853835412193545
 GameObject:
