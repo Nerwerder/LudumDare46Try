@@ -97,13 +97,12 @@ public class Planter : Interactable
         float waterConsumption = Mathf.Min((planterWaterRequirement + plantWaterRequirement), curWater);
 
         if (plant != null) {
-
             //Fertilizer
             float plantFertilizerRequirement = plant.fertilizerConsumption * Time.deltaTime;
-            float fertilizerConsumption = (plant.requiresFertilizer) ? (Mathf.Min(plantFertilizerRequirement, curFertilizer)) : (0f);
+            float fertilizerConsumption = Mathf.Min(plantFertilizerRequirement, curFertilizer);
 
             if ((curWater > 0) && ((plant.requiresFertilizer) ? (fertilizerConsumption > 0) : (true))) {
-                float growth = waterConsumption * plant.waterBoost + fertilizerConsumption * plant.fertilizerBoost + fertilizerConsumption * fertBonusPower;
+                float growth = waterConsumption * plant.waterBoost + fertilizerConsumption * plant.fertilizerBoost + fertilizerConsumption * plant.fertilizerBoost * fertBonusPower;
                 plant.Grow(growth);
             } else {
                 float decay = ((plant.requiresWater) ? (planterWaterRequirement) : (0f)) + ((plant.requiresFertilizer) ? (plantFertilizerRequirement) : (0f));

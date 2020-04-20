@@ -126,10 +126,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   oldParent: {fileID: 0}
   carryOffset: -0.5
-  toolRange: 15
+  toolRange: 16
   level: 1
   cost: 50
   maxWater: 200
   wateringAmount: 50
-  waterNearPlanters: 0
-  extraWaterRange: 0
+  waterNearPlanters: 1
+  extraWaterRange: 10
