@@ -19,9 +19,16 @@ public class PlayerRobot : MonoBehaviour
     private bool requestArmReset = false;
     private float armRequestTimer = 0f;
 
+    public float toolSummonTime = 3f;
+    public float toolSummonRadius = 5f;
+    public float toolSommunUp = 3f;
+    private ToolsRegistry toolsReg = null;
+    private float toolSummonTimer = 0f;
+
     public void Start() {
         feedbackLamp = gameObject.GetComponent<MoodLight>();
         arms = gameObject.GetComponent<ArmMovement>();
+        toolsReg = FindObjectOfType<ToolsRegistry>();
 
         ChangeColor();
         ControlArms();
@@ -36,6 +43,16 @@ public class PlayerRobot : MonoBehaviour
             FeedBack(Drop());
         }
 
+        if(Input.GetKey(KeyCode.Q) && curCarrying==null) {
+            toolSummonTimer += Time.deltaTime;
+            if(toolSummonTimer > toolSummonTime) {
+                SummonTools();
+                toolSummonTimer = 0f;
+            }
+        } else if(toolSummonTimer > 0) {
+            toolSummonTimer = 0;
+        }
+
         if(requestArmReset) {
             armRequestTimer += Time.deltaTime;
             if(armRequestTimer >= resetArmsTimer) {
@@ -43,6 +60,18 @@ public class PlayerRobot : MonoBehaviour
                 armRequestTimer = 0f;
                 ControlArms();
             }
+        }
+    }
+
+    private Vector3 RandomPointOnCircleEdge(float radius) {
+        var vector2 = Random.insideUnitCircle.normalized * radius;
+        return new Vector3(vector2.x, 0, vector2.y);
+    }
+
+    private void SummonTools() {
+        var tools = toolsReg.GetAllTools();
+        foreach(Tool t in tools) {
+            t.transform.position = transform.position + RandomPointOnCircleEdge(toolSummonRadius) + Vector3.up * toolSommunUp;
         }
     }
 

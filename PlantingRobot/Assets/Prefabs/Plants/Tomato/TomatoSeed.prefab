@@ -94,7 +94,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b220b4b5f3b22094c9613f7aefdf24ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  price: 4
+  oldParent: {fileID: 0}
+  price: 20
   plant: {fileID: 8951259213756872154, guid: 035e7487f9e9414439fc41d6eb757a4a, type: 3}
 --- !u!54 &-1660849618459582587
 Rigidbody:

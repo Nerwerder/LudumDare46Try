@@ -2542,6 +2542,11 @@ PrefabInstance:
       propertyPath: fruitParent
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 8123383700801197335, guid: c25f283d8fb34e24d81de7a25b27cf6b,
+        type: 3}
+      propertyPath: defaultWaterConsumption
+      value: 0.3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c25f283d8fb34e24d81de7a25b27cf6b, type: 3}
 --- !u!4 &828795340 stripped
@@ -2691,11 +2696,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8138145140713574363, guid: c25f283d8fb34e24d81de7a25b27cf6b,
-        type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c25f283d8fb34e24d81de7a25b27cf6b, type: 3}
@@ -4903,7 +4903,22 @@ PrefabInstance:
     - target: {fileID: 1771523448338697608, guid: 1a92c82f0cb0c4f4bbc919d93cb2e9c5,
         type: 3}
       propertyPath: averageSpawnTime
-      value: 13
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 1771523448338697608, guid: 1a92c82f0cb0c4f4bbc919d93cb2e9c5,
+        type: 3}
+      propertyPath: minSpawnTimeVariance
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1771523448338697608, guid: 1a92c82f0cb0c4f4bbc919d93cb2e9c5,
+        type: 3}
+      propertyPath: maxSpawnTimeVariance
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1771523448338697608, guid: 1a92c82f0cb0c4f4bbc919d93cb2e9c5,
+        type: 3}
+      propertyPath: spawnSpeedup
+      value: 1.02
       objectReference: {fileID: 0}
     - target: {fileID: 1771523449438448442, guid: 1a92c82f0cb0c4f4bbc919d93cb2e9c5,
         type: 3}
@@ -5739,6 +5754,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8468882912482735868, guid: 32525073a0d34d747acb00a75f510651,
+        type: 3}
+      propertyPath: money
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 8468882912482735868, guid: 32525073a0d34d747acb00a75f510651,
+        type: 3}
+      propertyPath: throwPower
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 8468882912482735868, guid: 32525073a0d34d747acb00a75f510651,
+        type: 3}
+      propertyPath: toolSummonRadius
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 32525073a0d34d747acb00a75f510651, type: 3}
