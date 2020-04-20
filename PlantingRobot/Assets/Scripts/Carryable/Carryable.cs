@@ -34,7 +34,7 @@ public abstract class Carryable : MonoBehaviour
         if(thrownMode) {
             thrownTimer += Time.deltaTime;
             if(thrownTimer >= throwModeMaxTimer) {
-                DeactivateThrownMode()
+                DeactivateThrownMode();
             }
         }
     }
