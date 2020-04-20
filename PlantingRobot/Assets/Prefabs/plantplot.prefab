@@ -64,9 +64,8 @@ MonoBehaviour:
   fertMat: {fileID: 2100000, guid: 08994ab97c354ee41b8b9bce3935da6a, type: 2}
   wetFertMat: {fileID: 2100000, guid: 1e78b38e2c60561419964712be18cf80, type: 2}
   groundRenderer: {fileID: 253224188015565777}
-  fruitParent: {fileID: 0}
   maxWater: 60
-  defaultWaterConsumption: 1
+  defaultWaterConsumption: 0.5
   maxFertilizer: 20
 --- !u!1 &2233875487502677080
 GameObject:
