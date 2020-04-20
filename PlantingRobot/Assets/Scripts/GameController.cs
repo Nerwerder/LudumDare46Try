@@ -5,12 +5,15 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
     bool _pause = false;
-
     bool _menuState = true;
+
+    bool _helpState = false;
 
     public GameObject _menuParent;
     public GameObject _menuCam;
     public GameObject _exitButton;
+    public GameObject _help;
+    public GameObject _money;
     private AudioSource audioSource = null;
     private bool music = true;
 
@@ -74,6 +77,7 @@ public class GameController : MonoBehaviour
         {
             _menuParent.SetActive(false);
             _menuCam.SetActive(false);
+            _money.SetActive(true);
             _menuState = false;
             ChangePauseState();
         }
@@ -81,10 +85,25 @@ public class GameController : MonoBehaviour
         {
             _menuParent.SetActive(true);
             _menuCam.SetActive(true);
+            _money.SetActive(false);
             _menuState = true;
             ChangePauseState();
         }
 
+    }
+
+    public void ToggleHelp()
+    {
+        if(_helpState)
+        {
+            _helpState = false;
+            _help.SetActive(false);
+        }
+        else
+        {
+            _helpState = true;
+            _help.SetActive(true);
+        }
     }
 
     public void ToggleBackgroundMusic() {
