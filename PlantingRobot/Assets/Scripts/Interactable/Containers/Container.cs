@@ -5,5 +5,5 @@ using UnityEngine;
 public class Container : Interactable
 {
     public ContainerType type;
-    public enum ContainerType { WaterContainer, SeedContainer, DropOffContainer, FertilizerContainer }
+    public enum ContainerType { WaterContainer, SeedContainer, DropOffContainer, FertilizerContainer, UpgradeContainer }
 }
