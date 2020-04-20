@@ -6,6 +6,16 @@ public class Movement : MonoBehaviour
 {
     public float speed;
     public bool rotateToMouse = true;   //TODO: make it possible to change the rotation mode
+    public GameObject trackLeft;
+    public GameObject trackRight;
+    Material trackMatLeft;
+    Material trackMatRight;
+
+    void Start()
+    {
+        trackMatLeft = trackLeft.GetComponent<Renderer>().material;
+        trackMatRight = trackRight.GetComponent<Renderer>().material;
+    }
 
     // Update is called once per frame
     void Update() {
@@ -13,6 +23,11 @@ public class Movement : MonoBehaviour
 
         float moveSpeed = Input.GetAxis("Vertical") * speed * Time.deltaTime;
         transform.Translate(transform.worldToLocalMatrix.MultiplyVector(transform.forward) * moveSpeed);
+
+        Debug.Log(moveSpeed);
+
+        trackMatLeft.SetFloat("Vector1_5FA427E5", moveSpeed / 2.0f);
+        trackMatRight.SetFloat("Vector1_5FA427E5", moveSpeed / 2.0f);
 
         //transform.Translate(Input.GetAxis("Vertical") * Time.deltaTime * speed, 0f, -Input.GetAxis("Horizontal") * Time.deltaTime * speed);
     }
