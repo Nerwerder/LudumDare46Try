@@ -32,14 +32,26 @@ public class Plant : MonoBehaviour
     public enum PlantState { NotReady, Harvestable, Dead}
     private PlantState currentPlantState = PlantState.NotReady;
     private float plantGrowth = 0f;
-    private float requiredGrowth = 0f;
+
+    private float decayStatusTime = 0.5f;
+    private float decayTimer = 0f;
+
 
     public void Start() {
         Debug.Assert(plantPhases != null);
         Debug.Assert(plantPhases.Count >= 2);
 
         currentPlant = Instantiate(plantPhases[currentPlantPhase].gameObject, transform);
-        requiredGrowth = plantPhases[currentPlantPhase].requiredGrowth;
+    }
+
+    public void Update() {
+        if(decayTimer > 0) {
+            decayTimer -= Time.deltaTime;
+        }
+    }
+
+    public bool IsDecaying() {
+        return (decayTimer > 0);
     }
 
     public void Grow(float g) {
@@ -62,7 +74,9 @@ public class Plant : MonoBehaviour
     }
 
     public void Decay(float d) {
-        if(currentPlantState == PlantState.Dead) {
+        decayTimer = decayStatusTime;
+
+        if (currentPlantState == PlantState.Dead) {
             return;
         }
 
