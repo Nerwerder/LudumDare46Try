@@ -27,6 +27,9 @@ public class Planter : Interactable
     private FruitRegistry fruitReg = null;
     private Transform fruitParent = null;
 
+    private new ParticleSystem particleSystem = null;
+    private bool decayParticles = false;
+
     public new void Start() {
         base.Start();
         planterReg = FindObjectOfType<PlanterRegistry>();
@@ -36,6 +39,8 @@ public class Planter : Interactable
         Debug.Assert(fruitReg != null);
         fruitParent = fruitReg.GetFruitParent();
         Debug.Assert(fruitParent != null);
+        particleSystem = gameObject.GetComponent<ParticleSystem>();
+        Debug.Assert(particleSystem);
     }
     ~Planter() {
         planterReg.DeregisterPlanter(this); //TODO: It could be a good Idea?
@@ -89,7 +94,34 @@ public class Planter : Interactable
         }
     }
 
+    private void DisableDecayParticle() {
+        if (decayParticles) {
+            particleSystem.Stop();
+            decayParticles = false;
+        }
+    }
+
+    private void EnableDecayParticle() {
+        if (!decayParticles) {
+            particleSystem.Play();
+            decayParticles = true;
+        }
+    }
+
+    private void CheckDecayParticle() {
+        if(plant) {
+            if(plant.IsDecaying()) {
+                EnableDecayParticle();
+            } else {
+                DisableDecayParticle();
+            }
+        } else {
+            DisableDecayParticle();
+        }
+    }
+
     public void FixedUpdate() {
+        CheckDecayParticle();
 
         //WaterConsumption
         float planterWaterRequirement = defaultWaterConsumption * Time.deltaTime;

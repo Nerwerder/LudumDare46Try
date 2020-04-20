@@ -25,15 +25,14 @@ public class PlayerRobot : MonoBehaviour
     private ToolsRegistry toolsReg = null;
     private float toolSummonTimer = 0f;
 
-    private bool audioPlaying = false;
-    private AudioSource audioSource;
-    
+//    private bool audioPlaying = false;
+//    private AudioSource audioSource;
 
     public void Start() {
         feedbackLamp = gameObject.GetComponent<MoodLight>();
         arms = gameObject.GetComponent<ArmMovement>();
         toolsReg = FindObjectOfType<ToolsRegistry>();
-        audioSource = gameObject.GetComponent<AudioSource>();
+//        audioSource = gameObject.GetComponent<AudioSource>();
         ChangeColor();
         ControlArms();
     }
