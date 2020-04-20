@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
-<<<<<<< HEAD
     bool _pause = false;
 
     bool _menuState = true;
