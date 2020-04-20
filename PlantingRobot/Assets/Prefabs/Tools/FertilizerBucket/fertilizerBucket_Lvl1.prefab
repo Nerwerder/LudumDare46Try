@@ -146,7 +146,7 @@ MonoBehaviour:
   toolRange: 10
   level: 0
   cost: 0
-  maxUses: 5
+  maxUses: 4
   costPerUse: 2
   fertilizerPerUse: 10
   bonusFertilizationPower: 0

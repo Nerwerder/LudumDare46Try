@@ -249,8 +249,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5738261940982468820}
   - component: {fileID: 4223120977987812766}
-  - component: {fileID: 5949956645791150916}
   - component: {fileID: 3534345613750791024}
+  - component: {fileID: 1642564835}
   m_Layer: 0
   m_Name: beetItem
   m_TagString: Carryable
@@ -289,20 +289,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   oldParent: {fileID: 0}
   value: 30
---- !u!64 &5949956645791150916
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8789125476144751303}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 0}
 --- !u!54 &3534345613750791024
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -319,3 +305,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!135 &1642564835
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8789125476144751303}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.1
+  m_Center: {x: 0, y: 0, z: 0}

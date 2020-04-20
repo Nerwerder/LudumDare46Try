@@ -9,7 +9,7 @@ public abstract class Tool : Carryable
     public int level = 0;
     public int cost = 0;
 
-    ToolsRegistry toolsReg;
+    ToolsRegistry toolsReg = null;
 
     public new void Start() {
         base.Start();
@@ -18,7 +18,7 @@ public abstract class Tool : Carryable
         toolsReg.RegisterTool(this);
     }
 
-    ~Tool() {
+    public void OnDestroy() {
         toolsReg.DeregisterTool(this);
     }
 }

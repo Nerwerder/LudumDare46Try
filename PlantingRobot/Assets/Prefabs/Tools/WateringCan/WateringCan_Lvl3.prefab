@@ -132,4 +132,4 @@ MonoBehaviour:
   maxWater: 360
   wateringAmount: 60
   waterNearPlanters: 1
-  extraWaterRange: 15
+  extraWaterRange: 20

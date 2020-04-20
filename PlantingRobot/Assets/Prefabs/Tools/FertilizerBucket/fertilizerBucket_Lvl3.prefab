@@ -146,9 +146,9 @@ MonoBehaviour:
   toolRange: 10
   level: 2
   cost: 160
-  maxUses: 2
+  maxUses: 4
   costPerUse: 2
-  fertilizerPerUse: 10
+  fertilizerPerUse: 20
   bonusFertilizationPower: 2
 --- !u!1 &7194853835412193545
 GameObject:
