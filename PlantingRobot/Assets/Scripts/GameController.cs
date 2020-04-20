@@ -4,18 +4,21 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
+<<<<<<< HEAD
     bool _pause = false;
 
     bool _menuState = true;
 
     public GameObject _menuParent;
     public GameObject _menuCam;
-
+    private AudioSource audioSource = null;
+    private bool music = true;
 
     private void Start()
     {
         Time.timeScale = 0.0f;
         _pause = true;
+        audioSource = gameObject.GetComponent<AudioSource>();    
     }
 
     void Update()
@@ -29,6 +32,11 @@ public class GameController : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Pause))
         {
             ChangePauseState();
+        }
+
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            ToggleBackgroundMusic();
         }
     }
 
@@ -72,5 +80,24 @@ public class GameController : MonoBehaviour
             _menuState = true;
             ChangePauseState();
         }
+
+    }
+
+    public void ToggleBackgroundMusic() {
+        if(music) {
+            StopSound();
+            music = false;
+        } else {
+            StartSound();
+            music = true;
+        }
+    }
+
+    public void StopSound() {
+        audioSource.Pause();
+    }
+
+    public void StartSound() {
+        audioSource.Play();
     }
 }
