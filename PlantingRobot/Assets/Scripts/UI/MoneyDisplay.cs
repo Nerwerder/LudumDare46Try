@@ -8,10 +8,13 @@ public class MoneyDisplay : MonoBehaviour
     public Text moneyText;
     protected PlayerRobot player = null;
 
+    private float timer;
+
     public void Start() {
         player = FindObjectOfType<PlayerRobot>();
     }
     public void Update() {
-        moneyText.text = "MONEY: " + player.GetMoney();
+        timer += Time.deltaTime;
+        moneyText.text = "MONEY: " + player.GetMoney() + "\n" + "TIME: " + (int)(timer / 60);
     }
 }

@@ -82,7 +82,8 @@ public class Insect : Interactable
 
     private void Spawn() {
         if(Random.value <= lootChance) {
-            Instantiate(lootList[Random.Range(0, (lootList.Count - 1))], transform.position, Quaternion.identity, seedReg.GetSeedParent().transform);
+            var seed = Instantiate(lootList[Random.Range(0, (lootList.Count - 1))], transform.position, Quaternion.identity, seedReg.GetSeedParent().transform);
+            seed.ActivateThrownMode();
         }
     }
 
