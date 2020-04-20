@@ -198,6 +198,7 @@ MonoBehaviour:
   money: 20
   feedbackBlinks: 2
   throwPower: 50
+  resetArmsTimer: 0.2
 --- !u!114 &1353519271525265803
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -300,7 +301,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3095135599079874140}
-  m_Mesh: {fileID: -55040950453512277, guid: 149f0101aa8a25a4f9b2017061422ecb, type: 3}
+  m_Mesh: {fileID: -7768809624023719388, guid: 149f0101aa8a25a4f9b2017061422ecb, type: 3}
 --- !u!23 &265925361138463878
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -380,7 +381,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3339220983094618699}
-  m_Mesh: {fileID: 2534964839176971238, guid: 149f0101aa8a25a4f9b2017061422ecb, type: 3}
+  m_Mesh: {fileID: 932825785857931782, guid: 149f0101aa8a25a4f9b2017061422ecb, type: 3}
 --- !u!23 &6100122289045515867
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -459,7 +460,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5655330495474528639}
-  m_Mesh: {fileID: -5495902117074765545, guid: 149f0101aa8a25a4f9b2017061422ecb, type: 3}
+  m_Mesh: {fileID: 1445575544606746464, guid: 149f0101aa8a25a4f9b2017061422ecb, type: 3}
 --- !u!23 &1346503905567956418
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -540,7 +541,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6226907260561895681}
-  m_Mesh: {fileID: 2150044562243273127, guid: 149f0101aa8a25a4f9b2017061422ecb, type: 3}
+  m_Mesh: {fileID: -3956922265015883066, guid: 149f0101aa8a25a4f9b2017061422ecb, type: 3}
 --- !u!23 &2314038119784177084
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -619,7 +620,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6611602833616432409}
-  m_Mesh: {fileID: -7387706064836869012, guid: 149f0101aa8a25a4f9b2017061422ecb, type: 3}
+  m_Mesh: {fileID: 8788592981329588991, guid: 149f0101aa8a25a4f9b2017061422ecb, type: 3}
 --- !u!23 &5132399074339137091
 MeshRenderer:
   m_ObjectHideFlags: 0

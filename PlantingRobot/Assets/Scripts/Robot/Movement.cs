@@ -23,8 +23,18 @@ public class Movement : MonoBehaviour
 
         float moveSpeed = Input.GetAxis("Vertical") * speed * Time.deltaTime;
         transform.Translate(transform.worldToLocalMatrix.MultiplyVector(transform.forward) * moveSpeed);
-        trackMatLeft.SetFloat("Vector1_5FA427E5", moveSpeed / 2.0f);
-        trackMatRight.SetFloat("Vector1_5FA427E5", moveSpeed / 2.0f);
+
+        if (moveSpeed > 0.0f)
+        {
+            trackMatLeft.SetFloat("Vector1_5FA427E5", 1.5f);
+            trackMatRight.SetFloat("Vector1_5FA427E5", 1.5f);
+        }
+        else
+        {
+            trackMatLeft.SetFloat("Vector1_5FA427E5", 0.0f);
+            trackMatRight.SetFloat("Vector1_5FA427E5", 0.0f);
+        }
+
 
         //transform.Translate(Input.GetAxis("Vertical") * Time.deltaTime * speed, 0f, -Input.GetAxis("Horizontal") * Time.deltaTime * speed);
     }

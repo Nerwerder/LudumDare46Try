@@ -7,8 +7,8 @@ public class MoodLight : MonoBehaviour
 
     public GameObject _lamp;
     public float blinkTime = 0.2f;
-    public float lightPower = 20f;
-    public float lightAlpha = 1.5f;
+    public float lightPower = 10f;
+    public float lightAlpha = 1.2f;
     Material _lampMaterial;
     Vector4 _defaultColor;
     Vector4 currentColor;
