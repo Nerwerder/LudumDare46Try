@@ -25,11 +25,16 @@ public class PlayerRobot : MonoBehaviour
     private ToolsRegistry toolsReg = null;
     private float toolSummonTimer = 0f;
 
+    private bool audioPlaying = false;
+    private AudioSource audioSource;
+    public AudioClip summonChanting;
+    
+
     public void Start() {
         feedbackLamp = gameObject.GetComponent<MoodLight>();
         arms = gameObject.GetComponent<ArmMovement>();
         toolsReg = FindObjectOfType<ToolsRegistry>();
-
+        audioSource = gameObject.GetComponent<AudioSource>();
         ChangeColor();
         ControlArms();
     }
@@ -44,13 +49,24 @@ public class PlayerRobot : MonoBehaviour
         }
 
         if(Input.GetKey(KeyCode.Q) && curCarrying==null) {
+            if(!audioPlaying) {
+                audioSource.clip = summonChanting;
+                audioSource.Play();
+                audioSource.volume = 0.6f;
+                audioPlaying = true;
+            }
             toolSummonTimer += Time.deltaTime;
+
             if(toolSummonTimer > toolSummonTime) {
                 SummonTools();
                 toolSummonTimer = 0f;
             }
         } else if(toolSummonTimer > 0) {
             toolSummonTimer = 0;
+            if(audioPlaying) {
+                audioSource.Stop();
+                audioPlaying = false;
+            }
         }
 
         if(requestArmReset) {
