@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 149f0101aa8a25a4f9b2017061422ecb
+guid: 4937faa1964d647488a602f140e802ab
 ModelImporter:
   serializedVersion: 19300
   internalIDToNameTable: []
@@ -7,43 +7,13 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Antenna
-    second: {fileID: 2100000, guid: 299ec2b97ed045942b6a06020603b772, type: 2}
+      name: DarkWood
+    second: {fileID: 2100000, guid: 0cf88cc4358f7c24f91ed79aef403611, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Arms
-    second: {fileID: 2100000, guid: 89cc72f32d083584eaa267892b2c9ded, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Eye
-    second: {fileID: 2100000, guid: c7e0b7e246126b347a21eac5015d1884, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Lamp
-    second: {fileID: 2100000, guid: a63a43613ed6bb744b1c6dc70dba7f79, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Lens
-    second: {fileID: 2100000, guid: 9e4cffa8b70738f4bbd09e829d6a2715, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: MainBody
-    second: {fileID: 2100000, guid: 0b21303c79c2185469d0be0c9c4664fa, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: TrackBox
-    second: {fileID: 2100000, guid: e2d9b00b33e8bb44787e0bf1ad1b3a80, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: TrackMat
-    second: {fileID: 2100000, guid: 26c47cbbcca6e7c488c4c6219b48b08e, type: 2}
+      name: LightWood
+    second: {fileID: 2100000, guid: 1a83145fab592ac4aaa6047bf5b034b3, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
