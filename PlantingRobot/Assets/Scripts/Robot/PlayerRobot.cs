@@ -144,8 +144,8 @@ public class PlayerRobot : MonoBehaviour
         }
 
         curCarrying = c;
-        curCarrying.DeactivateThrownMode();
         if (curCarrying) {
+            curCarrying.DeactivateThrownMode();
             curCarrying.GetComponent<Rigidbody>().isKinematic = true;
             curCarrying.oldParent = curCarrying.transform.parent;
             curCarrying.transform.SetParent(carryConnectioPoint.transform);

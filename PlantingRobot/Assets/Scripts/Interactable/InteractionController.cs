@@ -20,28 +20,49 @@ public class InteractionController : MonoBehaviour
         if (Input.GetMouseButtonDown(0)) {
             RaycastHit[] hits;
             hits = Physics.RaycastAll(Camera.main.ScreenPointToRay(Input.mousePosition));
+
+            List<Interactable> interactables = new List<Interactable>();
+            List<Carryable> carryables = new List<Carryable>();
+
             foreach(RaycastHit hit in hits) {
-
                 if(player.CanInteract(hit.transform)) {
-                    bool success = false;
-
                     switch (hit.transform.tag) {
                         case interactableTag:
-                            success = player.InteractWithInteractable(hit.transform.gameObject.GetComponent<Interactable>());
+                            interactables.Add(hit.transform.gameObject.GetComponent<Interactable>());
                             break;
                         case carryableTag:
-                            success = player.InteractWithCarryable(hit.transform.gameObject.GetComponent<Carryable>());
+                            carryables.Add(hit.transform.gameObject.GetComponent<Carryable>());
                             break;
-                        case playerTag:
-                            success = player.InteractWithYourself(hit.transform.gameObject.GetComponent<PlayerRobot>());
-                            break;
-                    }
-
-                    if (success) {
-                        break;
                     }
                 }
             }
+
+            //Check all the Found Thing in a logical Order
+            if(player.HasLaserGun()) {  //If the Player has a LaserGun, the most important entity are Insects
+                foreach(Interactable i in interactables) {
+                    if(i is Insect) {
+                        if (player.InteractWithInteractable(i)) {
+                            goto End;
+                        }
+                    }
+                }
+            }
+
+            //In most cases Carryables have priority (the Bucket on top of  a Planter)
+            foreach(Carryable c in carryables) {
+                if(player.InteractWithCarryable(c)) {
+                    goto End;
+                }
+            }
+
+            //If there was nothing else interesting, try to interact with the interactable
+            foreach(Interactable i in interactables) {
+                if (player.InteractWithInteractable(i)) {
+                    goto End;
+                }
+            }
+
+        End:;
         }
     }
 }

@@ -4392,7 +4392,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1987786283}
-  offset: {x: 0, y: 35, z: 0}
+  offset: {x: -10, y: 40, z: 0}
+  minDistance: 25
+  maxDistance: 75
+  offsetLength: 1
+  movementSpeed: 20
 --- !u!20 &1687258584
 Camera:
   m_ObjectHideFlags: 0
@@ -4443,13 +4447,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1687258581}
-  m_LocalRotation: {x: 0.5, y: 0.5, z: -0.5, w: 0.5}
-  m_LocalPosition: {x: 0, y: 40, z: 0}
+  m_LocalRotation: {x: 0.40557995, y: 0.57922786, z: -0.40557966, w: 0.5792281}
+  m_LocalPosition: {x: -2.1, y: 35, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 90, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 110, y: -90.00001, z: -179.99998}
 --- !u!114 &1687258586
 MonoBehaviour:
   m_ObjectHideFlags: 0
