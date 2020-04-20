@@ -5841,6 +5841,11 @@ PrefabInstance:
       propertyPath: throwPower
       value: 35
       objectReference: {fileID: 0}
+    - target: {fileID: 8468882912482735868, guid: 32525073a0d34d747acb00a75f510651,
+        type: 3}
+      propertyPath: toolSummonRadius
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 32525073a0d34d747acb00a75f510651, type: 3}
 --- !u!4 &1987786283 stripped
