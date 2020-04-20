@@ -261,5 +261,6 @@ MonoBehaviour:
   lasterStart: {fileID: 498530226601441435}
   cooldown: 0.2
   laserDuration: 0.2
+  upgradeDistance: 15
   destroyMultipleTargets: 1
-  destructionRange: 20
+  destructionRange: 12
