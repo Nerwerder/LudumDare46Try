@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &4572031894157554028
+--- !u!1 &498530226601441434
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,50 +8,80 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 659855480907268991}
-  - component: {fileID: 8391122751676332361}
-  - component: {fileID: 2832703434989651376}
-  - component: {fileID: 5499726233388918890}
-  - component: {fileID: 5499726233388918889}
-  - component: {fileID: 5499726233388918895}
-  - component: {fileID: 5499726233388918888}
+  - component: {fileID: 498530226601441435}
   m_Layer: 0
-  m_Name: LaserGunTest
-  m_TagString: Carryable
+  m_Name: LasterStartPoint
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &659855480907268991
+--- !u!4 &498530226601441435
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4572031894157554028}
+  m_GameObject: {fileID: 498530226601441434}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.85, z: -7.71}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4868837974361596836}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &498530227509280418
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4868837974361596836}
+  - component: {fileID: 498530227509280440}
+  - component: {fileID: 498530227509280423}
+  - component: {fileID: 498530227509280422}
+  - component: {fileID: 498530227509280421}
+  - component: {fileID: 498530227509280420}
+  - component: {fileID: 498530227509280419}
+  m_Layer: 0
+  m_Name: LaserGun_Lvl2
+  m_TagString: Carryable
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4868837974361596836
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 498530227509280418}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 5.64, y: 1.56, z: 6.48}
   m_LocalScale: {x: 0.39554694, y: 0.39554694, z: 0.39554694}
   m_Children:
-  - {fileID: 5499726234020011568}
+  - {fileID: 498530226601441435}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &8391122751676332361
+--- !u!33 &498530227509280440
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4572031894157554028}
+  m_GameObject: {fileID: 498530227509280418}
   m_Mesh: {fileID: -5495902117074765545, guid: fc66fa15b36d20e4d951aebc4547788f, type: 3}
---- !u!23 &2832703434989651376
+--- !u!23 &498530227509280423
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4572031894157554028}
+  m_GameObject: {fileID: 498530227509280418}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -63,7 +93,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d9815762f0c70a043adac4acd079951f, type: 2}
+  - {fileID: 2100000, guid: f74f1c89caba16248aee497fddfc2c80, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -84,13 +114,13 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!54 &5499726233388918890
+--- !u!54 &498530227509280422
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4572031894157554028}
+  m_GameObject: {fileID: 498530227509280418}
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
@@ -100,13 +130,13 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!64 &5499726233388918889
+--- !u!64 &498530227509280421
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4572031894157554028}
+  m_GameObject: {fileID: 498530227509280418}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
@@ -114,13 +144,13 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -5495902117074765545, guid: fc66fa15b36d20e4d951aebc4547788f, type: 3}
---- !u!120 &5499726233388918895
+--- !u!120 &498530227509280420
 LineRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4572031894157554028}
+  m_GameObject: {fileID: 498530227509280418}
   m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -211,13 +241,13 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
---- !u!114 &5499726233388918888
+--- !u!114 &498530227509280419
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4572031894157554028}
+  m_GameObject: {fileID: 498530227509280418}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1c51571f1cdccba47a46ef905f2dbcbb, type: 3}
@@ -225,37 +255,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   oldParent: {fileID: 0}
   carryOffset: 0.2
-  toolRange: 30
-  lasterStart: {fileID: 5499726234020011568}
-  cooldown: 0.6
-  laserDuration: 0.2
---- !u!1 &5499726234020011569
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5499726234020011568}
-  m_Layer: 0
-  m_Name: LasterStartPoint
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5499726234020011568
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5499726234020011569}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.85, z: -7.71}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 659855480907268991}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  toolRange: 40
+  level: 1
+  cost: 100
+  lasterStart: {fileID: 498530226601441435}
+  cooldown: 0.4
+  laserDuration: 0.1
+  destroyMultipleTargets: 0
+  destructionRange: 0

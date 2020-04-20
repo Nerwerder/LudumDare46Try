@@ -11,12 +11,28 @@ public class LaserGun : Tool
     private float coolTimer = 0f;
     private bool readyToFire = true;
 
+    public float upgradeDistance = 15f;
+
+    public bool destroyMultipleTargets = false;
+    public float destructionRange = 0f;
+
+    private InsectRegistry insectReg = null;
+
     public new void Start() {
         base.Start();
         lRen = gameObject.GetComponent<LineRenderer>();
+        insectReg = FindObjectOfType<InsectRegistry>();
+    }
+
+    private float distance(Transform t1, Transform t2) {
+        return (t1.position - t2.position).magnitude;
     }
 
     public override InteractionResult InteractWith(Interactable i) {
+        if(i is UpgradeContainer && (distance(transform, i.transform) <= upgradeDistance)) {
+            return ((UpgradeContainer)i).UpgradeMe(this);
+        }
+
         if (!readyToFire) { 
             return new InteractionResult(this, false); 
         }
@@ -24,10 +40,16 @@ public class LaserGun : Tool
         ShootAt(i.transform);
 
         if(i is Insect) {
-            return ((Insect)i).ShootAt(this);
+            Insect insect = (Insect)i;
+            if(destroyMultipleTargets) {
+                foreach(Insect it in insectReg.GetNearInsects(insect, destructionRange)) {
+                    it.ShootAt(this);
+                }
+            }
+            return insect.ShootAt(this);
         }
 
-        return new InteractionResult(this, false);
+        return new InteractionResult(this, false, false);
     }
 
     public void ShootAt(Transform t) {

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class InsectSpawner : MonoBehaviour
 {
-    public Transform insectParent = null;
     public float minSpawnDistance = 0f;
     public float maxSpawnDistance = 0f;
 
@@ -35,13 +34,20 @@ public class InsectSpawner : MonoBehaviour
 
     private float timer = 0f;
     private float nextSpawn = 0f;
+
+    private InsectRegistry insectReg = null;
+    private Transform insectParent = null;
     void Start() {
         nextSpawn = CalculateNextSpawnTime();
+        insectReg = FindObjectOfType<InsectRegistry>();
+        Debug.Assert(insectReg);
+        insectParent = insectReg.GetInsectParent();
+        Debug.Assert(insectParent);
     }
 
     void Update() {
         timer += Time.deltaTime;
-        if(timer >= nextSpawn) {
+        if (timer >= nextSpawn) {
             SpawnInsect();
             nextSpawn = CalculateNextSpawnTime();
             timer = 0f;
@@ -51,7 +57,7 @@ public class InsectSpawner : MonoBehaviour
     float CalculateNextSpawnTime() {
         float variance = Random.Range(0f, maxSpawnTimeVariance);
         float time = (Random.value > 0.5f) ? (averageSpawnTime - variance) : (averageSpawnTime + variance);
-        if(time <= 0) {
+        if (time <= 0) {
             time = 0.1f;
         }
         return time;
@@ -60,14 +66,15 @@ public class InsectSpawner : MonoBehaviour
     void SpawnInsect() {
         //Which Insect so Spawn
         Debug.Assert(insects.Count >= 1);
-        int insectIndex = Random.Range(0, (insects.Count-1));
+        int insectIndex = Random.Range(0, (insects.Count - 1));
         Insect insect = insects[insectIndex];
 
         //Figure out where to Spawn it
         Vector3 spawnPoint = RandomPointOnCircleEdge(Random.Range(minSpawnDistance, maxSpawnDistance));
 
         //Spawn the insect
-        Instantiate(insect, spawnPoint, Quaternion.identity, insectParent);
+        Insect newInsect = Instantiate(insect, spawnPoint, Quaternion.identity, insectParent);
+        newInsect.SetInsectRegistry(insectReg);
 
         averageSpawnTime /= spawnSpeedup;
         minSpawnTimeVariance /= spawnSpeedup;

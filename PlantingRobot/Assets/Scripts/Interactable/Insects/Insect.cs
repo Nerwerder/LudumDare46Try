@@ -28,6 +28,13 @@ public class Insect : Interactable
     private bool circleMode = false;
     private Vector3 circleTarget;
 
+    private InsectRegistry insectReg;
+
+    public void SetInsectRegistry(InsectRegistry s) {
+        insectReg = s;
+        insectReg.RegisteerInsect(this);
+    }
+
     public new void Start() {
         base.Start();
 
@@ -62,6 +69,7 @@ public class Insect : Interactable
 
     public InteractionResult ShootAt(LaserGun l) {
         Destroy(gameObject);
+        insectReg.DeregisterInsect(this);
         return new InteractionResult(l, true, true);
     }
 

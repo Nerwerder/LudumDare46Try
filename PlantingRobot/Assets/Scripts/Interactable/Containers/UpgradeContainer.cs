@@ -5,19 +5,14 @@ using UnityEngine;
 public class UpgradeContainer : Container
 {
     public List<WateringCan> wateringCans;
-
-    private PlayerRobot player = null;
+    public List<LaserGun> laserGuns;
 
     public new void Start() {
         base.Start();
-        player = FindObjectOfType<PlayerRobot>();
-        Debug.Assert(player != null);
     }
 
     public InteractionResult UpgradeMe(Carryable c) {
-
         if(c is WateringCan) {
-            //Search for new WateringCan wit level x.level+1
             WateringCan oldWateringCan = (WateringCan)c;
             int upgradeLevel = oldWateringCan.level + 1;
             WateringCan newWateringCan = null;
@@ -33,6 +28,22 @@ public class UpgradeContainer : Container
                 Destroy(oldWateringCan.gameObject);
                 return new InteractionResult(Instantiate(newWateringCan, oldWateringCan.oldParent), true, true);
             }
+        }  else if (c is LaserGun) {
+            LaserGun oldLaserGun = (LaserGun)c;
+            int upgradeLevel = oldLaserGun.level + 1;
+            LaserGun newLaserGun = null;
+            foreach (LaserGun l in laserGuns) {
+                if (l.level == upgradeLevel) {
+                    newLaserGun =l;
+                    break;
+                }
+            }
+
+            if(newLaserGun && player.Pay(newLaserGun.cost)) {
+                Destroy(oldLaserGun.gameObject);
+                return new InteractionResult(Instantiate(newLaserGun, oldLaserGun.oldParent), true, true);
+            }
+
         }
 
         return new InteractionResult(c, false, false);
