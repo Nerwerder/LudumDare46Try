@@ -67,11 +67,11 @@ MonoBehaviour:
   minFlightHeight: 4
   upDownSpeed: 1.3
   targetUpdateTime: 1
-  movementSpeed: 1.7
+  movementSpeed: 2.2
   arriveDistance: 2
   circleDistance: 5
-  attackPower: 7
-  lootChance: 0.05
+  attackPower: 4
+  lootChance: 0.06
   lootList:
   - {fileID: 3227715919862093998, guid: 3baaba8fd45ce014fb6ed80fb7cd419b, type: 3}
   - {fileID: -6006712416575967111, guid: 57eac28cac7e36b4f8646d7fe39c50eb, type: 3}

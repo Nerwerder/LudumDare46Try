@@ -5754,7 +5754,7 @@ PrefabInstance:
     - target: {fileID: 1771523448338697608, guid: 1a92c82f0cb0c4f4bbc919d93cb2e9c5,
         type: 3}
       propertyPath: averageSpawnTime
-      value: 18
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 1771523448338697608, guid: 1a92c82f0cb0c4f4bbc919d93cb2e9c5,
         type: 3}
@@ -5769,7 +5769,7 @@ PrefabInstance:
     - target: {fileID: 1771523448338697608, guid: 1a92c82f0cb0c4f4bbc919d93cb2e9c5,
         type: 3}
       propertyPath: spawnSpeedup
-      value: 1.02
+      value: 1.01
       objectReference: {fileID: 0}
     - target: {fileID: 1771523449438448442, guid: 1a92c82f0cb0c4f4bbc919d93cb2e9c5,
         type: 3}
@@ -6123,7 +6123,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 78af581828c06e04ab24ef10455e8f6b, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.4
+  m_Volume: 0.33
   m_Pitch: 1
   Loop: 1
   Mute: 0
