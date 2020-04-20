@@ -14,6 +14,10 @@ public class PlayerRobot : MonoBehaviour
     private ArmMovement arms;
     public int feedbackBlinks = 2;
     public float throwPower = 0f;
+    public float resetArmsTimer = 0.2f;
+
+    private bool requestArmReset = false;
+    private float armRequestTimer = 0f;
 
     public void Start() {
         feedbackLamp = gameObject.GetComponent<MoodLight>();
@@ -30,6 +34,15 @@ public class PlayerRobot : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.Space)) {
             FeedBack(Drop());
+        }
+
+        if(requestArmReset) {
+            armRequestTimer += Time.deltaTime;
+            if(armRequestTimer >= resetArmsTimer) {
+                requestArmReset = false;
+                armRequestTimer = 0f;
+                ControlArms();
+            }
         }
     }
 
@@ -209,7 +222,7 @@ public class PlayerRobot : MonoBehaviour
     public enum ChangeOfArms { Dip}
     public void RequestArmMovement(ChangeOfArms c) {
         arms.ArmsDown();
+        requestArmReset = true;
+        armRequestTimer = 0f;
     }
-
-
 }

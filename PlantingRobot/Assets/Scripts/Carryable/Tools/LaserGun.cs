@@ -60,7 +60,8 @@ public class LaserGun : Tool
         readyToFire = false;
     }
 
-    public void Update() {
+    public new void Update() {
+        base.Update();
         if (lRen.enabled) {
             lRen.SetPosition(0, lasterStart.position);
         }
