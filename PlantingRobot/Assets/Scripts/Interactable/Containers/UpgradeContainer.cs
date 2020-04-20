@@ -6,6 +6,7 @@ public class UpgradeContainer : Container
 {
     public List<WateringCan> wateringCans;
     public List<LaserGun> laserGuns;
+    public List<FertilizerBox> fertilizers;
 
     public new void Start() {
         base.Start();
@@ -43,7 +44,21 @@ public class UpgradeContainer : Container
                 Destroy(oldLaserGun.gameObject);
                 return new InteractionResult(Instantiate(newLaserGun, oldLaserGun.oldParent), true, true);
             }
+        } else if (c is FertilizerBox) {
+            FertilizerBox oldFertilizer = (FertilizerBox)c;
+            int upgradeLevel = oldFertilizer.level + 1;
+            FertilizerBox newFertilizer = null;
+            foreach (FertilizerBox f in fertilizers) {
+                if (f.level == upgradeLevel) {
+                    newFertilizer = f;
+                    break;
+                }
+            }
 
+            if (newFertilizer && player.Pay(newFertilizer.cost)) {
+                Destroy(oldFertilizer.gameObject);
+                return new InteractionResult(Instantiate(newFertilizer, oldFertilizer.oldParent), true, true);
+            }
         }
 
         return new InteractionResult(c, false, false);

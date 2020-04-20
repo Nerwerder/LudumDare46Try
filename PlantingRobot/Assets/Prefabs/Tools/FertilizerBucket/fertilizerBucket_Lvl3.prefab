@@ -91,7 +91,7 @@ GameObject:
   - component: {fileID: 7241439924320866128}
   - component: {fileID: 3809722054486357575}
   m_Layer: 0
-  m_Name: fertilizerBucket
+  m_Name: fertilizerBucket_Lvl3
   m_TagString: Carryable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -144,9 +144,12 @@ MonoBehaviour:
   oldParent: {fileID: 0}
   carryOffset: 0
   toolRange: 10
-  maxUses: 5
+  level: 2
+  cost: 160
+  maxUses: 2
   costPerUse: 2
   fertilizerPerUse: 10
+  bonusFertilizationPower: 2
 --- !u!1 &7194853835412193545
 GameObject:
   m_ObjectHideFlags: 0
@@ -206,7 +209,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 810d2bf05dc4aff488d100063d249cc0, type: 2}
+  - {fileID: 2100000, guid: f0ba78d8d5630b14e9b578f5ec43e571, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

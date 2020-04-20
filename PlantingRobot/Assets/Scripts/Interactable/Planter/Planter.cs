@@ -19,6 +19,7 @@ public class Planter : Interactable
     //Fertilizer
     public float maxFertilizer = 20f;
     private float curFertilizer = 0f;
+    private float fertBonusPower = 0f;
 
     private Plant plant = null;
     private PlanterRegistry planterReg = null;
@@ -66,8 +67,9 @@ public class Planter : Interactable
         ChangeMaterial();
     }
 
-    public void Fertilize(float f) {
+    public void Fertilize(float f, float fb) {
         curFertilizer = Mathf.Min(curFertilizer + f, maxFertilizer);
+        fertBonusPower = fb;
         ChangeMaterial();
     }
 
@@ -101,7 +103,7 @@ public class Planter : Interactable
             float fertilizerConsumption = (plant.requiresFertilizer) ? (Mathf.Min(plantFertilizerRequirement, curFertilizer)) : (0f);
 
             if ((curWater > 0) && ((plant.requiresFertilizer) ? (fertilizerConsumption > 0) : (true))) {
-                float growth = waterConsumption * plant.waterBoost + fertilizerConsumption * plant.fertilizerBoost;
+                float growth = waterConsumption * plant.waterBoost + fertilizerConsumption * plant.fertilizerBoost + fertilizerConsumption * fertBonusPower;
                 plant.Grow(growth);
             } else {
                 float decay = ((plant.requiresWater) ? (planterWaterRequirement) : (0f)) + ((plant.requiresFertilizer) ? (plantFertilizerRequirement) : (0f));

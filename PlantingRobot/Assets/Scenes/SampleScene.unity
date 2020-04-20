@@ -467,6 +467,7 @@ Transform:
   m_Children:
   - {fileID: 1854919804}
   - {fileID: 781707344}
+  - {fileID: 1249293226}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1098,8 +1099,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 3
-  fert: {fileID: 1592777125899576609, guid: 6746a0b0a60519047873a333f98aaf0e, type: 3}
-  toolParent: {fileID: 301274454}
+  fert: {fileID: 3809722054486357575, guid: 7c9c0c0a258f13247b6c8ea1a0834bf6, type: 3}
 --- !u!65 &956273897
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1426,6 +1426,50 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1456296545335728260}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1249293225
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1249293226}
+  - component: {fileID: 1249293227}
+  m_Layer: 0
+  m_Name: ToolsRegistry
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1249293226
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1249293225}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 301274454}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1249293227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1249293225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1195a8c9efa1dc4d94d7fb0373b5d7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  toolParent: {fileID: 301274454}
 --- !u!1 &1425111796
 GameObject:
   m_ObjectHideFlags: 0
@@ -1533,6 +1577,12 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 1, y: -1}
   m_UseGraphicAlpha: 1
+--- !u!4 &1450541395 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1771523449438448442, guid: 1a92c82f0cb0c4f4bbc919d93cb2e9c5,
+    type: 3}
+  m_PrefabInstance: {fileID: 1771523447729468757}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1578916370
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1876,7 +1926,7 @@ PrefabInstance:
     - target: {fileID: 6411901774909066186, guid: 028e808eed200c848bda2c00b31ea0e0,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6411901774909066186, guid: 028e808eed200c848bda2c00b31ea0e0,
         type: 3}
@@ -2236,6 +2286,29 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 79067997}
     m_Modifications:
+    - target: {fileID: 1456296546558094193, guid: 600c13e041d30cf44935e1e8af3f00fd,
+        type: 3}
+      propertyPath: fertilizers.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1456296546558094193, guid: 600c13e041d30cf44935e1e8af3f00fd,
+        type: 3}
+      propertyPath: fertilizers.Array.data[0]
+      value: 
+      objectReference: {fileID: 3809722054486357575, guid: 7c9c0c0a258f13247b6c8ea1a0834bf6,
+        type: 3}
+    - target: {fileID: 1456296546558094193, guid: 600c13e041d30cf44935e1e8af3f00fd,
+        type: 3}
+      propertyPath: fertilizers.Array.data[1]
+      value: 
+      objectReference: {fileID: 3809722054486357575, guid: 6d89da3341eec394485064db71546b55,
+        type: 3}
+    - target: {fileID: 1456296546558094193, guid: 600c13e041d30cf44935e1e8af3f00fd,
+        type: 3}
+      propertyPath: fertilizers.Array.data[2]
+      value: 
+      objectReference: {fileID: 3809722054486357575, guid: 93c85814fe46143408b4b6afa9210e2e,
+        type: 3}
     - target: {fileID: 1456296546558094196, guid: 600c13e041d30cf44935e1e8af3f00fd,
         type: 3}
       propertyPath: m_Name
@@ -2305,6 +2378,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1325022871, guid: 1a92c82f0cb0c4f4bbc919d93cb2e9c5, type: 3}
+      propertyPath: insectParent
+      value: 
+      objectReference: {fileID: 1450541395}
     - target: {fileID: 1771523449438448442, guid: 1a92c82f0cb0c4f4bbc919d93cb2e9c5,
         type: 3}
       propertyPath: m_LocalPosition.x
