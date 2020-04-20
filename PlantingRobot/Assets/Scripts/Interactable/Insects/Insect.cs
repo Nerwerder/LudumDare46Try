@@ -20,6 +20,11 @@ public class Insect : Interactable
 
     public float attackPower = 3f;
 
+    //Spawn Seeds
+    public float lootChance = 0.05f;
+    public List<Seed> lootList = null;
+    private SeedRegistry seedReg = null;
+
     private bool up = false;
     private Vector3 target;
     private Plant plantTarget = null;
@@ -48,7 +53,8 @@ public class Insect : Interactable
 
         planterReg = FindObjectOfType<PlanterRegistry>();
         SearchNewTarget();
-        
+
+        seedReg = FindObjectOfType<SeedRegistry>();
     }
 
     public void Update() {
@@ -70,7 +76,14 @@ public class Insect : Interactable
     public InteractionResult ShootAt(LaserGun l) {
         Destroy(gameObject);
         insectReg.DeregisterInsect(this);
+        Spawn();
         return new InteractionResult(l, true, true);
+    }
+
+    private void Spawn() {
+        if(Random.value <= lootChance) {
+            Instantiate(lootList[Random.Range(0, (lootList.Count - 1))], transform.position, Quaternion.identity, seedReg.GetSeedParent().transform);
+        }
     }
 
     private void SearchBetterTarget() {

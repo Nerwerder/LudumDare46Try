@@ -71,6 +71,11 @@ MonoBehaviour:
   arriveDistance: 2
   circleDistance: 5
   attackPower: 7
+  lootChance: 0.05
+  lootList:
+  - {fileID: 3227715919862093998, guid: 3baaba8fd45ce014fb6ed80fb7cd419b, type: 3}
+  - {fileID: -6006712416575967111, guid: 57eac28cac7e36b4f8646d7fe39c50eb, type: 3}
+  - {fileID: 1071323487668331820, guid: 28b1603cee0448d46b36f5fa0437c240, type: 3}
 --- !u!1 &632280820584424640
 GameObject:
   m_ObjectHideFlags: 0
