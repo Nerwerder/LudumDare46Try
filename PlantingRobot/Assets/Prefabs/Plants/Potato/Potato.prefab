@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7909491424582634684
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7909491424582634686}
+  - component: {fileID: 7909491424582634687}
+  m_Layer: 0
+  m_Name: Potato
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7909491424582634686
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7909491424582634684}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7909491424582634687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7909491424582634684}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6aa7d25e0737cb944af9a305fbb49734, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  plantPhases:
+  - {fileID: 2266485110178106087, guid: 809de262229cafc469999e1e0bddc794, type: 3}
+  - {fileID: -5852325229582332917, guid: fe8f9e57e5963fe4f882bb9b4c824dda, type: 3}
+  - {fileID: 7470213545705047612, guid: fc1a8a86865b9f84e83508e7300b415b, type: 3}
+  fruit: {fileID: 167030778698931228, guid: 0d17cc8595585b84984606998f1444b7, type: 3}
+  requiresFertilizer: 0
+  fertilizerBoost: 2
+  fertilizerConsumption: 1
+  requiresWater: 1
+  waterBoost: 1.4
+  waterConsumption: 1.3
+  livePoints: 70
+  deadPlantMaterial: {fileID: 2100000, guid: 9f22d6f259a35964e9c0904ccc210863, type: 2}
+  multipleHarvests: 0
+  afterHarvestStage: 0
+  harvestableDecayReduction: 3
