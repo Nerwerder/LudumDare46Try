@@ -129,7 +129,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!64 &498530227509280421
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -261,3 +261,6 @@ MonoBehaviour:
   lasterStart: {fileID: 498530226601441435}
   cooldown: 0.6
   laserDuration: 0.1
+  upgradeDistance: 15
+  destroyMultipleTargets: 0
+  destructionRange: 0
