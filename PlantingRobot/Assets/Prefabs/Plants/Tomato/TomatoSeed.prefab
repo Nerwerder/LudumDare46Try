@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1937851709173794340}
   - component: {fileID: 1071323487668331820}
   - component: {fileID: -1660849618459582587}
-  - component: {fileID: 1523398510934245101}
+  - component: {fileID: 4000135753162472728}
   m_Layer: 0
   m_Name: TomatoSeed
   m_TagString: Carryable
@@ -113,8 +113,8 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!64 &1523398510934245101
-MeshCollider:
+--- !u!65 &4000135753162472728
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -123,7 +123,6 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -5495902117074765545, guid: f09d8a79fcf3d8f48bf6dd2d2748fc36, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 0.012260135, y: 0.0043086787, z: 0.025921853}
+  m_Center: {x: -3.1132332e-17, y: 0, z: 0.0021907436}
